@@ -167,7 +167,6 @@ $ npm start
 
 <!-- Made with [OSS Insight](https://ossinsight.io/) -->
 
-Let's build a better antd together.
 더 나은 antd 를 함께 빌드합시다.
 
 우리는 모든 컨트리뷰션을 환영합니다. 우선 우리의 [컨트리뷰션 가이드](https://ant.design/docs/react/contributing)를 읽어주세요. 당신은 어떤 아이디어든 [Pull Request](https://github.com/ant-design/ant-design/pulls) 혹은 [GitHub Issues](https://github.com/ant-design/ant-design/issues)로 제출할 수 있습니다. 만약 코드를 개선하고 싶다면, [개발 지침](https://github.com/ant-design/ant-design/wiki/Development)을 확인하고 좋은 시간보내세요! :)
