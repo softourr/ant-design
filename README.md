@@ -21,7 +21,7 @@
 [![dumi][dumi-image]][dumi-url]
 [![Issues need help][help-wanted-image]][help-wanted-url]
 
-[Changelog](./CHANGELOG.en-US.md) · [Report Bug][github-issues-url] · [Request Feature][github-issues-url] · English · [中文](./README-zh_CN.md)
+[Changelog](./CHANGELOG.ko-KR.md) [원본 Changelog](https://github.com/ant-design/ant-design/blob/master/CHANGELOG.en-US.md) · [Report Bug][github-issues-url] · [Request Feature][github-issues-url] · Korean · [원본](https://github.com/ant-design-korea/ant-design.git)
 
 ![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -168,12 +168,13 @@ $ npm start
 <!-- Made with [OSS Insight](https://ossinsight.io/) -->
 
 Let's build a better antd together.
+더 나은 antd 를 함께 빌드합시다.
 
-We welcome all contributions. Please read our [Contributing Guide](https://ant.design/docs/react/contributing) first. You can submit any ideas as [Pull Requests](https://github.com/ant-design/ant-design/pulls) or as [GitHub Issues](https://github.com/ant-design/ant-design/issues). If you'd like to improve code, check out the [Development Instructions](https://github.com/ant-design/ant-design/wiki/Development) and have a good time! :)
+우리는 모든 컨트리뷰션을 환영합니다. 우선 우리의 [컨트리뷰션 가이드](https://ant.design/docs/react/contributing)를 읽어주세요. 당신은 어떤 아이디어든 [Pull Request](https://github.com/ant-design/ant-design/pulls) 혹은 [GitHub Issues](https://github.com/ant-design/ant-design/issues)로 제출할 수 있습니다. 만약 코드를 개선하고 싶다면, [개발 지침](https://github.com/ant-design/ant-design/wiki/Development)을 확인하고 좋은 시간보내세요! :)
 
-If you are a collaborator, please follow our [Pull Request Principle](https://github.com/ant-design/ant-design/wiki/PR-principle) to create a Pull Request with our [Pull Request Template](https://github.com/ant-design/ant-design/wiki/PR-principle#pull-request-template).
+만약 당신이 콜라보레이터라면, 우리의 [Pull Request Principle](https://github.com/ant-design/ant-design/wiki/PR-principle) 을 따라 [Pull Request Template](https://github.com/ant-design/ant-design/wiki/PR-principle#pull-request-template)을 사용하여 Pull Request를 생성해주세요.
 
-[![Let's fund issues in this repository](https://raw.githubusercontent.com/BoostIO/issuehunt-materials/master/v1/issuehunt-button-v1.svg)](https://issuehunt.io/repos/34526884)
+[![이 리포지토리의 이슈를 찾아 봅시다.](https://raw.githubusercontent.com/BoostIO/issuehunt-materials/master/v1/issuehunt-button-v1.svg)](https://issuehunt.io/repos/34526884)
 
 ## ❤️ 스폰서 및 후원자 [![](https://opencollective.com/ant-design/tiers/sponsors/badge.svg?label=Sponsors&color=brightgreen)](https://opencollective.com/ant-design#support) [![](https://opencollective.com/ant-design/tiers/backers/badge.svg?label=Backers&color=brightgreen)](https://opencollective.com/ant-design#support)
 
