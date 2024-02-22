@@ -1,3 +1,4 @@
+import * as React from 'react';
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import CopyOutlined from '@ant-design/icons/CopyOutlined';
 import EditOutlined from '@ant-design/icons/EditOutlined';
@@ -10,13 +11,13 @@ import useIsomorphicLayoutEffect from 'rc-util/lib/hooks/useLayoutEffect';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import omit from 'rc-util/lib/omit';
 import { composeRef } from 'rc-util/lib/ref';
-import * as React from 'react';
+
+import { isStyleSupport } from '../../_util/styleChecker';
+import TransButton from '../../_util/transButton';
 import { ConfigContext } from '../../config-provider';
 import useLocale from '../../locale/useLocale';
 import type { TooltipProps } from '../../tooltip';
 import Tooltip from '../../tooltip';
-import { isStyleSupport } from '../../_util/styleChecker';
-import TransButton from '../../_util/transButton';
 import Editable from '../Editable';
 import useMergedConfig from '../hooks/useMergedConfig';
 import useUpdatedEffect from '../hooks/useUpdatedEffect';
@@ -31,7 +32,7 @@ interface CopyConfig {
   text?: string;
   onCopy?: (event?: React.MouseEvent<HTMLDivElement>) => void;
   icon?: React.ReactNode;
-  tooltips?: boolean | React.ReactNode;
+  tooltips?: React.ReactNode;
   format?: 'text/plain' | 'text/html';
 }
 
@@ -39,7 +40,7 @@ interface EditConfig {
   text?: string;
   editing?: boolean;
   icon?: React.ReactNode;
-  tooltip?: boolean | React.ReactNode;
+  tooltip?: React.ReactNode;
   onStart?: () => void;
   onChange?: (value: string) => void;
   onCancel?: () => void;
@@ -193,7 +194,7 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
   // ========================== Copyable ==========================
   const [enableCopy, copyConfig] = useMergedConfig<CopyConfig>(copyable);
   const [copied, setCopied] = React.useState(false);
-  const copyIdRef = React.useRef<number>();
+  const copyIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyOptions: Pick<CopyConfig, 'format'> = {};
   if (copyConfig.format) {
@@ -201,7 +202,9 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
   }
 
   const cleanCopyId = () => {
-    window.clearTimeout(copyIdRef.current!);
+    if (copyIdRef.current) {
+      clearTimeout(copyIdRef.current);
+    }
   };
 
   const onCopyClick = (e?: React.MouseEvent<HTMLDivElement>) => {
@@ -214,7 +217,7 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
 
     // Trigger tips update
     cleanCopyId();
-    copyIdRef.current = window.setTimeout(() => {
+    copyIdRef.current = setTimeout(() => {
       setCopied(false);
     }, 3000);
 
@@ -313,7 +316,7 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
         setIsNativeEllipsis(currentEllipsis);
       }
     }
-  }, [enableEllipsis, cssEllipsis, children, cssLineClamp, isNativeVisible]);
+  }, [enableEllipsis, cssEllipsis, children, cssLineClamp, isNativeVisible, ellipsisWidth]);
 
   // https://github.com/ant-design/ant-design/issues/36786
   // Use IntersectionObserver to check if element is invisible
@@ -448,7 +451,9 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
 
   // Copy
   const renderCopy = () => {
-    if (!enableCopy) return;
+    if (!enableCopy) {
+      return null;
+    }
 
     const { tooltips, icon } = copyConfig;
 
@@ -464,7 +469,10 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
     return (
       <Tooltip key="copy" title={copyTitle}>
         <TransButton
-          className={classNames(`${prefixCls}-copy`, copied && `${prefixCls}-copy-success`)}
+          className={classNames(`${prefixCls}-copy`, {
+            [`${prefixCls}-copy-success`]: copied,
+            [`${prefixCls}-copy-icon-only`]: children === null || children === undefined,
+          })}
           onClick={onCopyClick}
           aria-label={ariaLabel}
         >
@@ -493,7 +501,7 @@ const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
   ];
 
   return (
-    <ResizeObserver onResize={onResize} disabled={!mergedEnableEllipsis || cssEllipsis}>
+    <ResizeObserver onResize={onResize} disabled={!mergedEnableEllipsis}>
       {(resizeRef: React.RefObject<HTMLElement>) => (
         <EllipsisTooltip
           tooltipProps={tooltipProps}

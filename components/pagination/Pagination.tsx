@@ -8,10 +8,13 @@ import RcPagination from 'rc-pagination';
 import enUS from 'rc-pagination/lib/locale/en_US';
 import * as React from 'react';
 import { ConfigContext } from '../config-provider';
+import useSize from '../config-provider/hooks/useSize';
 import useBreakpoint from '../grid/hooks/useBreakpoint';
 import { useLocale } from '../locale';
 import { MiddleSelect, MiniSelect } from './Select';
 import useStyle from './style';
+import { useToken } from '../theme/internal';
+import BorderedStyle from './style/bordered';
 
 export interface PaginationProps extends RcPaginationProps {
   showQuickJumper?: boolean | { goButton?: React.ReactNode };
@@ -33,25 +36,28 @@ export interface PaginationConfig extends Omit<PaginationProps, 'rootClassName'>
 
 export type { PaginationLocale };
 
-const Pagination: React.FC<PaginationProps> = ({
-  prefixCls: customizePrefixCls,
-  selectPrefixCls: customizeSelectPrefixCls,
-  className,
-  rootClassName,
-  size,
-  locale: customLocale,
-  selectComponentClass,
-  responsive,
-  showSizeChanger,
-  ...restProps
-}) => {
+const Pagination: React.FC<PaginationProps> = (props) => {
+  const {
+    prefixCls: customizePrefixCls,
+    selectPrefixCls: customizeSelectPrefixCls,
+    className,
+    rootClassName,
+    style,
+    size: customizeSize,
+    locale: customLocale,
+    selectComponentClass,
+    responsive,
+    showSizeChanger,
+    ...restProps
+  } = props;
   const { xs } = useBreakpoint(responsive);
+  const [, token] = useToken();
 
   const { getPrefixCls, direction, pagination = {} } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls('pagination', customizePrefixCls);
 
   // Style
-  const [wrapSSR, hashId] = useStyle(prefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls);
 
   const mergedShowSizeChanger = showSizeChanger ?? pagination.showSizeChanger;
 
@@ -98,30 +104,42 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const locale = { ...contextLocale, ...customLocale };
 
-  const isSmall = size === 'small' || !!(xs && !size && responsive);
+  const mergedSize = useSize(customizeSize);
+
+  const isSmall = mergedSize === 'small' || !!(xs && !mergedSize && responsive);
 
   const selectPrefixCls = getPrefixCls('select', customizeSelectPrefixCls);
+
   const extendedClassName = classNames(
     {
       [`${prefixCls}-mini`]: isSmall,
       [`${prefixCls}-rtl`]: direction === 'rtl',
+      [`${prefixCls}-bordered`]: token.wireframe,
     },
+    pagination?.className,
     className,
     rootClassName,
     hashId,
+    cssVarCls,
   );
 
-  return wrapSSR(
-    <RcPagination
-      {...iconsProps}
-      {...restProps}
-      prefixCls={prefixCls}
-      selectPrefixCls={selectPrefixCls}
-      className={extendedClassName}
-      selectComponentClass={selectComponentClass || (isSmall ? MiniSelect : MiddleSelect)}
-      locale={locale}
-      showSizeChanger={mergedShowSizeChanger}
-    />,
+  const mergedStyle: React.CSSProperties = { ...pagination?.style, ...style };
+
+  return wrapCSSVar(
+    <>
+      {token.wireframe && <BorderedStyle prefixCls={prefixCls} />}
+      <RcPagination
+        {...iconsProps}
+        {...restProps}
+        style={mergedStyle}
+        prefixCls={prefixCls}
+        selectPrefixCls={selectPrefixCls}
+        className={extendedClassName}
+        selectComponentClass={selectComponentClass || (isSmall ? MiniSelect : MiddleSelect)}
+        locale={locale}
+        showSizeChanger={mergedShowSizeChanger}
+      />
+    </>,
   );
 };
 

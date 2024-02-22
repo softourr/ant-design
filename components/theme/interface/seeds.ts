@@ -63,6 +63,14 @@ export interface SeedToken extends PresetColorType {
    */
   colorBgBase: string;
 
+  /**
+   * @nameZH 超链接颜色
+   * @nameEN Hyperlink color
+   * @desc 控制超链接的颜色。
+   * @descEN Control the color of hyperlink.
+   */
+  colorLink: string;
+
   //  ----------   Font   ---------- //
 
   /**
@@ -259,4 +267,13 @@ export interface SeedToken extends PresetColorType {
    * @default false
    */
   wireframe: boolean;
+
+  /**
+   * @nameZH 动画风格
+   * @nameEN Motion Style
+   * @desc 用于配置动画效果，为 `false` 时则关闭动画
+   * @descEN Used to configure the motion effect, when it is `false`, the motion is turned off
+   * @default false
+   */
+  motion: boolean;
 }

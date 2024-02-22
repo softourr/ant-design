@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import type { InputRef } from 'antd';
+import type { GetRef, TableColumnsType, TableColumnType } from 'antd';
 import { Button, Input, Space, Table } from 'antd';
-import type { ColumnsType, ColumnType } from 'antd/es/table';
-import type { FilterConfirmProps } from 'antd/es/table/interface';
+import type { FilterDropdownProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
+
+type InputRef = GetRef<typeof Input>;
 
 interface DataType {
   key: string;
@@ -49,7 +50,7 @@ const App: React.FC = () => {
 
   const handleSearch = (
     selectedKeys: string[],
-    confirm: (param?: FilterConfirmProps) => void,
+    confirm: FilterDropdownProps['confirm'],
     dataIndex: DataIndex,
   ) => {
     confirm();
@@ -62,7 +63,7 @@ const App: React.FC = () => {
     setSearchText('');
   };
 
-  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<DataType> => ({
+  const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<DataType> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
@@ -114,7 +115,7 @@ const App: React.FC = () => {
       </div>
     ),
     filterIcon: (filtered: boolean) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -139,7 +140,7 @@ const App: React.FC = () => {
       ),
   });
 
-  const columns: ColumnsType<DataType> = [
+  const columns: TableColumnsType<DataType> = [
     {
       title: 'Name',
       dataIndex: 'name',

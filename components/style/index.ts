@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
-import type { CSSObject } from '@ant-design/cssinjs';
+import { unit, type CSSObject } from '@ant-design/cssinjs';
+
 import type { AliasToken, DerivativeToken } from '../theme/internal';
 
 export { operationUnit } from './operationUnit';
-export { roundedArrow } from './roundedArrow';
 
 export const textEllipsis: CSSObject = {
   overflow: 'hidden',
@@ -11,7 +11,10 @@ export const textEllipsis: CSSObject = {
   textOverflow: 'ellipsis',
 };
 
-export const resetComponent = (token: DerivativeToken): CSSObject => ({
+export const resetComponent = (
+  token: DerivativeToken,
+  needInheritFontFamily = false,
+): CSSObject => ({
   boxSizing: 'border-box',
   margin: 0,
   padding: 0,
@@ -21,7 +24,7 @@ export const resetComponent = (token: DerivativeToken): CSSObject => ({
   lineHeight: token.lineHeight,
   listStyle: 'none',
   // font-feature-settings: @font-feature-settings-base;
-  fontFamily: token.fontFamily,
+  fontFamily: needInheritFontFamily ? 'inherit' : token.fontFamily,
 });
 
 export const resetIcon = (): CSSObject => ({
@@ -99,10 +102,15 @@ export const genLinkStyle = (token: DerivativeToken): CSSObject => ({
   },
 });
 
-export const genCommonStyle = (token: DerivativeToken, componentPrefixCls: string): CSSObject => {
+export const genCommonStyle = (
+  token: DerivativeToken,
+  componentPrefixCls: string,
+  rootCls?: string,
+): CSSObject => {
   const { fontFamily, fontSize } = token;
 
-  const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
+  const prefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
+  const rootPrefixSelector = rootCls ? `.${rootCls}` : prefixSelector;
 
   return {
     [rootPrefixSelector]: {
@@ -114,7 +122,7 @@ export const genCommonStyle = (token: DerivativeToken, componentPrefixCls: strin
         boxSizing: 'border-box',
       },
 
-      [rootPrefixSelector]: {
+      [prefixSelector]: {
         boxSizing: 'border-box',
 
         '&::before, &::after': {
@@ -126,7 +134,7 @@ export const genCommonStyle = (token: DerivativeToken, componentPrefixCls: strin
 };
 
 export const genFocusOutline = (token: AliasToken): CSSObject => ({
-  outline: `${token.lineWidthFocus}px solid ${token.colorPrimaryBorder}`,
+  outline: `${unit(token.lineWidthFocus)} solid ${token.colorPrimaryBorder}`,
   outlineOffset: 1,
   transition: 'outline-offset 0s, outline 0s',
 });

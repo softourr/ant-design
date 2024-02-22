@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import type { DragEndEvent } from '@dnd-kit/core';
 import { DndContext, PointerSensor, useSensor } from '@dnd-kit/core';
@@ -8,10 +9,8 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { css } from '@emotion/css';
 import { Button, Upload } from 'antd';
-import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
-import React, { useState } from 'react';
+import type { UploadFile, UploadProps } from 'antd';
 
 interface DraggableUploadListItemProps {
   originNode: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
@@ -29,17 +28,15 @@ const DraggableUploadListItem = ({ originNode, file }: DraggableUploadListItemPr
     cursor: 'move',
   };
 
-  // prevent preview event when drag end
-  const className = isDragging
-    ? css`
-        a {
-          pointer-events: none;
-        }
-      `
-    : '';
-
   return (
-    <div ref={setNodeRef} style={style} className={className} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      // prevent preview event when drag end
+      className={isDragging ? 'is-dragging' : ''}
+      {...attributes}
+      {...listeners}
+    >
       {/* hide error tooltip when dragging */}
       {file.status === 'error' && isDragging ? originNode.props.children : originNode}
     </div>
@@ -101,7 +98,7 @@ const App: React.FC = () => {
     <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
       <SortableContext items={fileList.map((i) => i.uid)} strategy={verticalListSortingStrategy}>
         <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
           fileList={fileList}
           onChange={onChange}
           itemRender={(originNode, file) => (

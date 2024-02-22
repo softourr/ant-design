@@ -1,20 +1,29 @@
-<p align="center">
-  <a href="https://ant.design">
-    <img width="200" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg">
-  </a>
-</p>
+<div align="center"><a name="readme-top"></a>
 
-<h1 align="center">Ant Design</h1>
+<img height="180" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg">
 
-<div align="center">
+<h1>Ant Design</h1>
 
 엔터프라이즈급 UI 디자인 언어 및 React UI 라이브러리
 
-[![CI status][github-action-image]][github-action-url] [![codecov][codecov-image]][codecov-url] [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url]
+[![CI status][github-action-image]][github-action-url]
+[![codecov][codecov-image]][codecov-url]
+[![NPM version][npm-image]][npm-url]
+[![NPM downloads][download-image]][download-url]
 
-[![][bundlephobia-image]][bundlephobia-url] [![][bundlesize-js-image]][unpkg-js-url] [![FOSSA Status][fossa-image]][fossa-url]
+[![][bundlephobia-image]][bundlephobia-url]
+[![][bundlesize-js-image]][unpkg-js-url]
+[![FOSSA Status][fossa-image]][fossa-url]
 
-[![Follow Twitter][twitter-image]][twitter-url] [![Renovate status][renovate-image]][renovate-dashboard-url] [![][issues-helper-image]][issues-helper-url] [![dumi][dumi-image]][dumi-url] [![Issues need help][help-wanted-image]][help-wanted-url]
+[![Follow Twitter][twitter-image]][twitter-url]
+[![Renovate status][renovate-image]][renovate-dashboard-url]
+[![][issues-helper-image]][issues-helper-url]
+[![dumi][dumi-image]][dumi-url]
+[![Issues need help][help-wanted-image]][help-wanted-url]
+
+[Changelog](./CHANGELOG.en-US.md) · [Report Bug][github-issues-url] · [Request Feature][github-issues-url] · English · [中文](./README-zh_CN.md)
+
+![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 [npm-image]: http://img.shields.io/npm/v/antd.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/antd
@@ -34,20 +43,36 @@
 [unpkg-js-url]: https://unpkg.com/browse/antd/dist/antd.min.js
 [bundlephobia-image]: https://badgen.net/bundlephobia/minzip/antd?style=flat-square
 [bundlephobia-url]: https://bundlephobia.com/package/antd
-[issues-helper-image]: https://img.shields.io/badge/using-issues--helper-orange?style=flat-square
-[issues-helper-url]: https://github.com/actions-cool/issues-helper
+[issues-helper-image]: https://img.shields.io/badge/using-actions--cool-blue?style=flat-square
+[issues-helper-url]: https://github.com/actions-cool
 [renovate-image]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=flat-square
 [renovate-dashboard-url]: https://github.com/ant-design/ant-design/issues/32498
 [dumi-image]: https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square
 [dumi-url]: https://github.com/umijs/dumi
+[github-issues-url]: https://new-issue.ant.design
+
+<!-- Copy-paste in your Readme.md file -->
+
+<a href="https://next.ossinsight.io/widgets/official/compose-last-28-days-stats?repo_id=34526884" target="_blank" style="display: block" align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-last-28-days-stats/thumbnail.png?repo_id=34526884&image_size=auto&color_scheme=dark" width="655" height="auto">
+    <img alt="Performance Stats of ant-design/ant-design - Last 28 days" src="https://next.ossinsight.io/widgets/official/compose-last-28-days-stats/thumbnail.png?repo_id=34526884&image_size=auto&color_scheme=light" width="655" height="auto">
+  </picture>
+</a>
+
+<!-- Made with [OSS Insight](https://ossinsight.io/) -->
 
 </div>
 
 [![](https://user-images.githubusercontent.com/507615/209472919-6f7e8561-be8c-4b0b-9976-eb3c692aa20a.png)](https://ant.design)
 
+<<<<<<< HEAD
 한국어 | [원본](https://github.com/ant-design-korea/ant-design.git)
 
 ## ✨ 기능
+=======
+## ✨ Features
+>>>>>>> upstream/master
 
 - 🌈 웹 애플리케이션을 위한 엔터프라이즈급 UI 디자인.
 - 📦 즉시 사용할 수 있는 고품질 React 컴포넌트.
@@ -76,13 +101,20 @@ npm install antd
 yarn add antd
 ```
 
+<<<<<<< HEAD
 ## 🔨 사용법
+=======
+```bash
+pnpm add antd
+```
 
-```jsx
-import React from 'react';
+## 🔨 Usage
+>>>>>>> upstream/master
+
+```tsx
 import { Button, DatePicker } from 'antd';
 
-const App = () => (
+export default () => (
   <>
     <Button type="primary">눌러주세요</Button>
     <DatePicker placeholder="날자 선택" />
@@ -90,6 +122,7 @@ const App = () => (
 );
 ```
 
+<<<<<<< HEAD
 ### TypeScript
 
 `antd`는 TypeScript로 작성됐으며, 모든 타입이 정의됐습니다, [TypeScript 사용하기](https://ant.design/docs/react/use-in-typescript)로 시작하세요.
@@ -99,6 +132,9 @@ const App = () => (
 `antd`는 수십개의 언어를 지원합니다., [i18n](https://ant.design/docs/react/i18n)를 참고해주세요.
 
 ## 🔗 링크
+=======
+## 🔗 Links
+>>>>>>> upstream/master
 
 - [Home page](https://ant.design/)
 - [Components Overview](https://ant.design/components/overview)
@@ -140,13 +176,32 @@ $ npm start
 
 ## 🤝 컨트리뷰트 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+<<<<<<< HEAD
 우리들의 [컨트리뷰트 가이드](https://ant.design/docs/react/contributing)를 읽고 더 나은 antd를 함께 만들어봐요.
 
 모든 컨트리뷰터들을 환영합니다. 그 전에 다음 문서를 읽어주세요. [CONTRIBUTING.md](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md). 당신은 어떤 아이디어든 [풀 리퀘스트](https://github.com/ant-design/ant-design/pulls)나 [GitHub 이슈](https://github.com/ant-design/ant-design/issues)에 제출할 수 있습니다. 만약 코드를 개선하고 싶다면, [개발 지침](https://github.com/ant-design/ant-design/wiki/Development)을 확인하세요, 그리고 좋은 시간 보내세요! :)
 
 만약 당신이 콜라보레이터라면, 풀 리퀘스트를 생성할 때 부디 [풀 리퀘스트 원칙](https://github.com/ant-design/ant-design/wiki/PR-principle)과 [콜라보레이터 템플릿](https://github.com/ant-design/ant-design/compare?expand=1&template=collaborator.md)을 따라주세요.
+=======
+<!-- Copy-paste in your Readme.md file -->
 
-[![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/34526884)
+<a href="https://next.ossinsight.io/widgets/official/compose-recent-active-contributors?repo_id=34526884&limit=30" target="_blank" style="display: block" align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-recent-active-contributors/thumbnail.png?repo_id=34526884&limit=30&image_size=auto&color_scheme=dark" width="655" height="auto">
+    <img alt="Active Contributors of ant-design/ant-design - Last 28 days" src="https://next.ossinsight.io/widgets/official/compose-recent-active-contributors/thumbnail.png?repo_id=34526884&limit=30&image_size=auto&color_scheme=light" width="655" height="auto">
+  </picture>
+</a>
+
+<!-- Made with [OSS Insight](https://ossinsight.io/) -->
+>>>>>>> upstream/master
+
+Let's build a better antd together.
+
+We welcome all contributions. Please read our [Contributing Guide](https://ant.design/docs/react/contributing) first. You can submit any ideas as [Pull Requests](https://github.com/ant-design/ant-design/pulls) or as [GitHub Issues](https://github.com/ant-design/ant-design/issues). If you'd like to improve code, check out the [Development Instructions](https://github.com/ant-design/ant-design/wiki/Development) and have a good time! :)
+
+If you are a collaborator, please follow our [Pull Request Principle](https://github.com/ant-design/ant-design/wiki/PR-principle) to create a Pull Request with our [Pull Request Template](https://github.com/ant-design/ant-design/wiki/PR-principle#pull-request-template).
+
+[![Let's fund issues in this repository](https://raw.githubusercontent.com/BoostIO/issuehunt-materials/master/v1/issuehunt-button-v1.svg)](https://issuehunt.io/repos/34526884)
 
 ## ❤️ 스폰서 및 후원자 [![](https://opencollective.com/ant-design/tiers/sponsors/badge.svg?label=Sponsors&color=brightgreen)](https://opencollective.com/ant-design#support) [![](https://opencollective.com/ant-design/tiers/backers/badge.svg?label=Backers&color=brightgreen)](https://opencollective.com/ant-design#support)
 

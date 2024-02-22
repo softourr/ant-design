@@ -1,11 +1,14 @@
 import Dayjs from 'dayjs';
+
 import 'dayjs/locale/zh-cn';
+
+import React from 'react';
 import MockDate from 'mockdate';
 import { type PickerPanelProps } from 'rc-picker';
 import dayjsGenerateConfig from 'rc-picker/lib/generate/dayjs';
 import type { Locale } from 'rc-picker/lib/interface';
 import { resetWarned } from 'rc-util/lib/warning';
-import React from 'react';
+
 import Calendar from '..';
 import mountTest from '../../../tests/shared/mountTest';
 import rtlTest from '../../../tests/shared/rtlTest';
@@ -16,7 +19,7 @@ import Select from '../../select';
 import Header, { type CalendarHeaderProps } from '../Header';
 
 const ref: {
-  calendarProps?: PickerPanelProps<unknown>;
+  calendarProps?: PickerPanelProps;
   calendarHeaderProps?: CalendarHeaderProps<unknown>;
 } = {};
 
@@ -34,7 +37,7 @@ jest.mock('rc-picker', () => {
   const PickerPanelComponent = RcPicker.PickerPanel;
   return {
     ...RcPicker,
-    PickerPanel: (props: PickerPanelProps<unknown>) => {
+    PickerPanel: (props: PickerPanelProps) => {
       ref.calendarProps = props;
       return <PickerPanelComponent {...props} />;
     },
@@ -76,7 +79,7 @@ describe('Calendar', () => {
     const { container } = render(<Calendar onSelect={onSelect} onChange={onChange} />);
 
     fireEvent.click(container.querySelector('.ant-picker-cell')!);
-    expect(onSelect).toHaveBeenCalledWith(expect.anything());
+    expect(onSelect).toHaveBeenCalledWith(expect.anything(), { source: 'date' });
 
     const value = onSelect.mock.calls[0][0];
     expect(Dayjs.isDayjs(value)).toBe(true);
@@ -149,8 +152,8 @@ describe('Calendar', () => {
   it('getDateRange should returns a disabledDate function', () => {
     const validRange: [Dayjs.Dayjs, Dayjs.Dayjs] = [Dayjs('2018-02-02'), Dayjs('2018-05-18')];
     render(<Calendar validRange={validRange} defaultValue={Dayjs('2018-02-02')} />);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-06-02'))).toBe(true);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-04-02'))).toBe(false);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-06-02'), {} as any)).toBe(true);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-04-02'), {} as any)).toBe(false);
   });
 
   it('validRange should work with disabledDate function', () => {
@@ -162,11 +165,11 @@ describe('Calendar', () => {
       />,
     );
 
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-01'))).toBe(true);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-02'))).toBe(false);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-03'))).toBe(true);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-04'))).toBe(false);
-    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-06-01'))).toBe(true);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-01'), {} as any)).toBe(true);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-02'), {} as any)).toBe(false);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-03'), {} as any)).toBe(true);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-02-04'), {} as any)).toBe(false);
+    expect(ref.calendarProps?.disabledDate?.(Dayjs('2018-06-01'), {} as any)).toBe(true);
   });
 
   it('Calendar MonthSelect should display correct label', () => {
@@ -270,7 +273,7 @@ describe('Calendar', () => {
     const end = Dayjs('2019-11-01');
     const onValueChange = jest.fn();
     createWrapper(start, end, value, onValueChange);
-    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(3));
+    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(3), 'year');
   });
 
   it('if start.month > value.month, set value.month to start.month', () => {
@@ -279,7 +282,7 @@ describe('Calendar', () => {
     const end = Dayjs('2019-03-01');
     const onValueChange = jest.fn();
     createWrapper(start, end, value, onValueChange);
-    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(10));
+    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(10), 'year');
   });
 
   it('if change year and month > end month, set value.month to end.month', () => {
@@ -302,7 +305,7 @@ describe('Calendar', () => {
     fireEvent.click(
       Array.from(wrapper.container.querySelectorAll('.ant-select-item-option')).at(-1)!,
     );
-    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(2));
+    expect(onValueChange).toHaveBeenCalledWith(value.year(2019).month(2), 'year');
   });
 
   it('onMonthChange should work correctly', () => {
@@ -324,7 +327,7 @@ describe('Calendar', () => {
     );
     openSelect(wrapper.container, '.ant-picker-calendar-month-select');
     clickSelectItem(wrapper.container);
-    expect(onValueChange).toHaveBeenCalledWith(value.month(10));
+    expect(onValueChange).toHaveBeenCalledWith(value.month(10), 'month');
   });
 
   it('onTypeChange should work correctly', () => {
@@ -401,7 +404,7 @@ describe('Calendar', () => {
 
       for (let index = start; index < end; index += 1) {
         monthOptions.push(
-          <Select.Option className="month-item" key={`${index}`} value={index}>
+          <Select.Option className="month-item" key={index} value={index}>
             {months[index]}
           </Select.Option>,
         );
@@ -537,5 +540,15 @@ describe('Calendar', () => {
     fireEvent.click(Array.from(container.querySelectorAll(`.ant-radio-button-input`)).at(1)!);
     expect(container.querySelector('.bar')).toBeTruthy();
     errSpy.mockRestore();
+  });
+
+  it('support Calendar.generateCalendar', () => {
+    jest.useFakeTimers().setSystemTime(new Date('2000-01-01'));
+
+    const MyCalendar = Calendar.generateCalendar(dayjsGenerateConfig);
+    const { container } = render(<MyCalendar />);
+    expect(container.firstChild).toMatchSnapshot();
+
+    jest.useRealTimers();
   });
 });

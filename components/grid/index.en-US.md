@@ -45,11 +45,14 @@ Layout uses a 24 grid layout to define the width of each "box", but does not rig
 <code src="./demo/flex-order.tsx">Order</code>
 <code src="./demo/flex-stretch.tsx">Flex Stretch</code>
 <code src="./demo/responsive.tsx">Responsive</code>
+<code src="./demo/responsive-flex.tsx" version="5.14.0">Flex Responsive</code>
 <code src="./demo/responsive-more.tsx">More responsive</code>
 <code src="./demo/playground.tsx">Playground</code>
 <code src="./demo/useBreakpoint.tsx">useBreakpoint Hook</code>
 
 ## API
+
+Common props ref：[Common props](/docs/react/common-props)
 
 If the Ant Design grid layout component does not meet your needs, you can use the excellent layout components of the community:
 
@@ -85,3 +88,7 @@ If the Ant Design grid layout component does not meet your needs, you can use th
 You can modify the breakpoints values using by modifying `screen[XS|SM|MD|LG|XL|XXL]` with [theme customization](/docs/react/customize-theme) (since 5.1.0, [sandbox demo](https://codesandbox.io/s/antd-reproduction-template-forked-dlq3r9?file=/index.js)).
 
 The breakpoints of responsive grid follow [BootStrap 4 media queries rules](https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints) (not including `occasionally part`).
+
+## Design Token
+
+<ComponentTokenTable component="Grid"></ComponentTokenTable>

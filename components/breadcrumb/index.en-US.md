@@ -37,13 +37,15 @@ return <Breadcrumb routes={[{ breadcrumbName: 'sample' }]} />;
 <!-- prettier-ignore -->
 <code src="./demo/basic.tsx">Basic Usage</code>
 <code src="./demo/withIcon.tsx">With an Icon</code>
-<code src="./demo/react-router.tsx" iframe="200">react-router V6</code>
 <code src="./demo/separator.tsx">Configuring the Separator</code>
 <code src="./demo/overlay.tsx">Bread crumbs with drop down menu</code>
 <code src="./demo/separator-component.tsx">Configuring the Separator Independently</code>
 <code src="./demo/debug-routes.tsx">Debug Routes</code>
+<code src="./demo/component-token.tsx" debug>Component Token</code>
 
 ## API
+
+Common props ref：[Common props](/docs/react/common-props)
 
 ### Breadcrumb
 
@@ -51,12 +53,12 @@ return <Breadcrumb routes={[{ breadcrumbName: 'sample' }]} />;
 | --- | --- | --- | --- | --- |
 | itemRender | Custom item renderer | (route, params, routes, paths) => ReactNode | - |  |
 | params | Routing parameters | object | - |  |
-| items | The routing stack information of router | [items\[\]](#ItemType) | - | 5.3.0 |
+| items | The routing stack information of router | [ItemType\[\]](#ItemType) | - | 5.3.0 |
 | separator | Custom separator | ReactNode | `/` |  |
 
 ### ItemType
 
-> type ItemType = [RouteItemType](#RouteItemType) | [SeparatorType](#SeparatorType)
+> type ItemType = Omit<[RouteItemType](#RouteItemType), 'title' | 'path'> | [SeparatorType](#SeparatorType)
 
 ### RouteItemType
 
@@ -64,7 +66,8 @@ return <Breadcrumb routes={[{ breadcrumbName: 'sample' }]} />;
 | --- | --- | --- | --- | --- |
 | className | The additional css class | string | - |  |
 | dropdownProps | The dropdown props | [Dropdown](/components/dropdown) | - |  |
-| href | Target of hyperlink | string | - |  |
+| href | Target of hyperlink. Can not work with `path` | string | - |  |
+| path | Connected path. Each path will connect with prev one. Can not work with `href` | string | - |  |
 | menu | The menu props | [MenuProps](/components/menu/#api) | - | 4.24.0 |
 | onClick | Set the handler to handle click event | (e:MouseEvent) => void | - |  |
 | title | item name | ReactNode | - |  |

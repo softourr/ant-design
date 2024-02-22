@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
 import { resetWarned } from 'rc-util/lib/warning';
+import React, { useState } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
 import Anchor from '..';
 import { act, fireEvent, render, waitFakeTimer } from '../../../tests/utils';
+import Button from '../../button';
 import type { AnchorDirection } from '../Anchor';
 
 const { Link } = Anchor;
@@ -18,6 +19,12 @@ let idCounter = 0;
 const getHashUrl = () => `Anchor-API-${idCounter++}`;
 
 jest.mock('scroll-into-view-if-needed', () => jest.fn());
+
+Object.defineProperty(window, 'location', {
+  value: {
+    replace: jest.fn(),
+  },
+});
 
 describe('Anchor Render', () => {
   const getBoundingClientRectMock = jest.spyOn(
@@ -343,6 +350,17 @@ describe('Anchor Render', () => {
     expect(link).toEqual({ href, title });
   });
 
+  it('replaces item href in browser history', () => {
+    const hash = getHashUrl();
+
+    const href = `#${hash}`;
+    const title = hash;
+    const { container } = render(<Anchor replace items={[{ key: hash, href, title }]} />);
+
+    fireEvent.click(container.querySelector(`a[href="${href}"]`)!);
+    expect(window.location.replace).toHaveBeenCalledWith(href);
+  });
+
   it('onChange event', () => {
     const hash1 = getHashUrl();
     const hash2 = getHashUrl();
@@ -371,6 +389,53 @@ describe('Anchor Render', () => {
     fireEvent.click(container.querySelector(`a[href="#${hash2}"]`)!);
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(onChange).toHaveBeenLastCalledWith(`#${hash2}`);
+  });
+
+  it('should be used the latest onChange method', () => {
+    const hash1 = getHashUrl();
+    const hash2 = getHashUrl();
+
+    const beforeFn = jest.fn();
+    const afterFn = jest.fn();
+
+    const Demo: React.FC = () => {
+      const [trigger, setTrigger] = useState(false);
+      const onChange = trigger ? afterFn : beforeFn;
+
+      return (
+        <>
+          <Button className="test-button" onClick={() => setTrigger(true)} />
+          <Anchor
+            onChange={onChange}
+            items={[
+              {
+                key: hash1,
+                href: `#${hash1}`,
+                title: hash1,
+              },
+              {
+                key: hash2,
+                href: `#${hash2}`,
+                title: hash2,
+              },
+            ]}
+          />
+        </>
+      );
+    };
+
+    const { container } = render(<Demo />);
+    expect(beforeFn).toHaveBeenCalled();
+    expect(afterFn).not.toHaveBeenCalled();
+
+    beforeFn.mockClear();
+    afterFn.mockClear();
+
+    fireEvent.click(container.querySelector('.test-button')!);
+    fireEvent.click(container.querySelector(`a[href="#${hash2}"]`)!);
+
+    expect(beforeFn).not.toHaveBeenCalled();
+    expect(afterFn).toHaveBeenCalled();
   });
 
   it('handles invalid hash correctly', () => {
@@ -495,9 +560,12 @@ describe('Anchor Render', () => {
         { legacyRoot: true },
       );
 
-      expect(onChange).toHaveBeenCalledTimes(1);
-      fireEvent.click(container.querySelector(`a[href="#${hash2}"]`)!);
+      // Should be 2 times:
+      // 1. ''
+      // 2. hash1 (Since `getCurrentAnchor` still return same hash)
       expect(onChange).toHaveBeenCalledTimes(2);
+      fireEvent.click(container.querySelector(`a[href="#${hash2}"]`)!);
+      expect(onChange).toHaveBeenCalledTimes(3);
       expect(onChange).toHaveBeenLastCalledWith(`#${hash2}`);
     });
 
@@ -548,6 +616,22 @@ describe('Anchor Render', () => {
         );
         fireEvent.scroll(window || document);
       }).not.toThrow();
+    });
+
+    it('should repeat trigger when scrolling', () => {
+      const getCurrentAnchor = jest.fn();
+      render(
+        <Anchor
+          getCurrentAnchor={getCurrentAnchor}
+          items={[{ key: 'test', href: null as unknown as string, title: 'test' }]}
+        />,
+      );
+
+      for (let i = 0; i < 100; i += 1) {
+        getCurrentAnchor.mockReset();
+        fireEvent.scroll(window || document);
+        expect(getCurrentAnchor).toHaveBeenCalled();
+      }
     });
   });
 

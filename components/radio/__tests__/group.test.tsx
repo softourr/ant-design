@@ -1,8 +1,9 @@
-import React from 'react';
 import type { RefAttributes } from 'react';
+import React from 'react';
+
 import type { RadioGroupProps } from '..';
-import { render, fireEvent } from '../../../tests/utils';
 import Radio from '..';
+import { fireEvent, render } from '../../../tests/utils';
 
 describe('Radio Group', () => {
   function createRadioGroup(props?: RadioGroupProps & RefAttributes<HTMLDivElement>) {
@@ -251,5 +252,25 @@ describe('Radio Group', () => {
     expect(handleFocus).toHaveBeenCalledTimes(1);
     fireEvent.blur(container.firstChild!);
     expect(handleBlur).toHaveBeenCalledTimes(1);
+  });
+
+  it('options support id', () => {
+    const { container } = render(
+      <Radio.Group options={[{ label: 'bamboo', id: 'bamboo', value: 'bamboo' }]} />,
+    );
+    expect(container.querySelector('#bamboo')).toBeTruthy();
+  });
+
+  it('options support title', () => {
+    const { container } = render(
+      <Radio.Group options={[{ label: 'bamboo', title: 'bamboo', value: 'bamboo' }]} />,
+    );
+
+    const select = container.querySelector('.ant-radio-group label > span');
+    expect(select).toBeTruthy();
+    // https://github.com/ant-design/ant-design/issues/46739
+    expect(select!.getAttribute('title')).toBeFalsy();
+    // fix 46739 solution
+    expect(container.querySelector('.ant-radio-group label')).toHaveAttribute('title', 'bamboo');
   });
 });

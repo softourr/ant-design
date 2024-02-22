@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   DownloadOutlined,
   LeftOutlined,
@@ -7,7 +8,7 @@ import {
   SearchOutlined as SearchIcon,
   SmileOutlined,
 } from '@ant-design/icons';
-import type { RadioChangeEvent } from 'antd';
+import type { ConfigProviderProps, RadioChangeEvent } from 'antd';
 import {
   Badge,
   Button,
@@ -29,8 +30,8 @@ import {
   Tree,
   TreeSelect,
 } from 'antd';
-import type { DirectionType } from 'antd/es/config-provider';
-import React, { useState } from 'react';
+
+type DirectionType = ConfigProviderProps['direction'];
 
 const InputGroup = Input.Group;
 const ButtonGroup = Button.Group;
@@ -252,7 +253,7 @@ const Page: React.FC<{ popupPlacement: Placement }> = ({ popupPlacement }) => {
                 <TreeNode title="leaf" key="0-0-0-1" />
               </TreeNode>
               <TreeNode title="parent 1-1" key="0-0-1">
-                <TreeNode title={<span style={{ color: '#1890ff' }}>sss</span>} key="0-0-1-0" />
+                <TreeNode title={<span style={{ color: '#1677ff' }}>sss</span>} key="0-0-1-0" />
               </TreeNode>
             </TreeNode>
           </Tree>

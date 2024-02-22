@@ -1,9 +1,9 @@
-import { css, Global } from '@emotion/react';
 import React from 'react';
-import useSiteToken from '../../../hooks/useSiteToken';
+import { css, Global } from '@emotion/react';
+import { useTheme } from 'antd-style';
 
 const GlobalDemoStyles: React.FC = () => {
-  const { token } = useSiteToken();
+  const token = useTheme();
 
   const { antCls, iconCls } = token;
 
@@ -22,12 +22,22 @@ const GlobalDemoStyles: React.FC = () => {
         .code-box {
           position: relative;
           display: inline-block;
-          width: 100%;
+          width: calc(100% - ${token.lineWidth * 2}px);
           margin: 0 0 16px;
           background-color: ${token.colorBgContainer};
           border: 1px solid ${token.colorSplit};
-          border-radius: ${token.borderRadius}px;
+          border-radius: ${token.borderRadiusLG}px;
           transition: all 0.2s;
+
+          &.code-box-simplify {
+            border-radius: 0;
+            margin-bottom: 0;
+
+            .code-box-demo {
+              padding: 0;
+              border-bottom: 0;
+            }
+          }
 
           .code-box-title {
             &,
@@ -39,7 +49,10 @@ const GlobalDemoStyles: React.FC = () => {
 
           .code-box-demo {
             background-color: ${token.colorBgContainer};
-            border-radius: ${token.borderRadius}px ${token.borderRadius}px 0 0;
+            border-radius: ${token.borderRadiusLG}px ${token.borderRadiusLG}px 0 0;
+            > .demo {
+              overflow: auto;
+            }
           }
 
           .markdown {
@@ -60,38 +73,27 @@ const GlobalDemoStyles: React.FC = () => {
 
           &-expand-trigger {
             position: relative;
-            margin-left: 12px;
             color: #3b4357;
             font-size: 20px;
             cursor: pointer;
             opacity: 0.75;
             transition: all 0.3s;
+            margin-inline-start: 12px;
 
             &:hover {
               opacity: 1;
-            }
-
-            ${antCls}-row-rtl & {
-              margin-right: 8px;
-              margin-left: 0;
             }
           }
 
           &-title {
             position: absolute;
             top: -14px;
-            margin-left: 16px;
             padding: 1px 8px;
             color: #777;
             background: ${token.colorBgContainer};
             border-radius: ${token.borderRadius}px ${token.borderRadius}px 0 0;
             transition: background-color 0.4s;
-
-            ${antCls}-row-rtl & {
-              margin-right: 16px;
-              margin-left: 0;
-              border-radius: ${token.borderRadius}px 0 0 ${token.borderRadius}px;
-            }
+            margin-inline-start: 16px;
 
             a,
             a:hover {
@@ -109,11 +111,11 @@ const GlobalDemoStyles: React.FC = () => {
             position: absolute;
             top: 7px;
             right: -16px;
-            padding-right: 6px;
             font-size: 12px;
             text-decoration: none;
             background: inherit;
             transform: scale(0.9);
+            padding-inline-end: 6px;
 
             ${iconCls} {
               color: ${token.colorTextSecondary};
@@ -127,9 +129,6 @@ const GlobalDemoStyles: React.FC = () => {
             ${antCls}-row${antCls}-row-rtl & {
               right: auto;
               left: -22px;
-              margin-right: 0;
-              padding-right: 8px;
-              padding-left: 6px;
             }
           }
 
@@ -165,14 +164,9 @@ const GlobalDemoStyles: React.FC = () => {
             > p {
               width: 100%;
               margin: 0.5em 0;
-              padding-right: 25px;
               font-size: 12px;
               word-break: break-word;
-
-              ${antCls}-row-rtl & {
-                padding-right: 0;
-                padding-left: 25px;
-              }
+              padding-inline-end: 25px;
             }
           }
 
@@ -226,7 +220,6 @@ const GlobalDemoStyles: React.FC = () => {
 
           .highlight-wrapper {
             display: none;
-            overflow: auto;
             border-radius: 0 0 ${token.borderRadius}px ${token.borderRadius}px;
 
             &-expand {
@@ -338,6 +331,8 @@ const GlobalDemoStyles: React.FC = () => {
               background: ${token.colorBgContainer};
               border: none;
               box-shadow: unset;
+              padding: 12px 16px;
+              font-size: 13px;
             }
           }
 

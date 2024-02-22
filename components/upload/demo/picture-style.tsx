@@ -1,7 +1,7 @@
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Upload } from 'antd';
-import type { UploadFile } from 'antd/es/upload/interface';
+import type { UploadFile } from 'antd';
 
 const fileList: UploadFile[] = [
   {
@@ -27,7 +27,7 @@ const fileList: UploadFile[] = [
 const App: React.FC = () => (
   <>
     <Upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
       listType="picture"
       defaultFileList={[...fileList]}
     >
@@ -36,7 +36,7 @@ const App: React.FC = () => (
     <br />
     <br />
     <Upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
       listType="picture"
       defaultFileList={[...fileList]}
       className="upload-list-inline"

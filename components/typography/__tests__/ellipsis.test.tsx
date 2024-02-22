@@ -1,7 +1,8 @@
-import { spyElementPrototypes } from 'rc-util/lib/test/domHook';
 import React from 'react';
+import { spyElementPrototypes } from 'rc-util/lib/test/domHook';
 import { act } from 'react-dom/test-utils';
-import { fireEvent, render, waitFakeTimer, triggerResize, waitFor } from '../../../tests/utils';
+
+import { fireEvent, render, triggerResize, waitFakeTimer, waitFor } from '../../../tests/utils';
 import type { EllipsisConfig } from '../Base';
 import Base from '../Base';
 
@@ -17,6 +18,8 @@ describe('Typography.Ellipsis', () => {
   let mockRectSpy: ReturnType<typeof spyElementPrototypes>;
   let getWidthTimes = 0;
   let computeSpy: jest.SpyInstance<CSSStyleDeclaration>;
+  let offsetWidth: number;
+  let scrollWidth: number;
 
   beforeAll(() => {
     jest.useFakeTimers();
@@ -32,8 +35,11 @@ describe('Typography.Ellipsis', () => {
       offsetWidth: {
         get: () => {
           getWidthTimes += 1;
-          return 100;
+          return offsetWidth;
         },
+      },
+      scrollWidth: {
+        get: () => scrollWidth,
       },
       getBoundingClientRect() {
         let html = this.innerHTML;
@@ -46,6 +52,11 @@ describe('Typography.Ellipsis', () => {
     computeSpy = jest
       .spyOn(window, 'getComputedStyle')
       .mockImplementation(() => ({ fontSize: 12 }) as unknown as CSSStyleDeclaration);
+  });
+
+  beforeEach(() => {
+    offsetWidth = 100;
+    scrollWidth = 0;
   });
 
   afterEach(() => {
@@ -432,5 +443,100 @@ describe('Typography.Ellipsis', () => {
       expect(baseElement.querySelector('.ant-tooltip-open')).not.toBeNull();
     });
     mockRectSpy.mockRestore();
+  });
+
+  it('should not throw default dom nodes', async () => {
+    let currentWidth = 100;
+    // string count is different with different width
+    const getLineStrCount = (width: number) => {
+      const res = width === 100 ? 20 : 17;
+      return res;
+    };
+
+    const ref = React.createRef<HTMLElement>();
+    const resize = (width: number) => {
+      currentWidth = width;
+      if (ref.current) triggerResize(ref.current);
+    };
+
+    mockRectSpy = spyElementPrototypes(HTMLElement, {
+      offsetHeight: {
+        get() {
+          let html = this.innerHTML;
+          html = html.replace(/<[^>]*>/g, '');
+          const lines = Math.ceil(html.length / getLineStrCount(currentWidth));
+
+          return lines * 16;
+        },
+      },
+      offsetWidth: {
+        get: () => currentWidth,
+      },
+      getBoundingClientRect() {
+        let html = this.innerHTML;
+        html = html.replace(/<[^>]*>/g, '');
+        const lines = Math.ceil(html.length / getLineStrCount(currentWidth));
+        return { height: lines * 16 };
+      },
+    });
+
+    const { container } = render(
+      <Base
+        ellipsis={{
+          rows: 2,
+        }}
+        ref={ref}
+        editable
+        component="p"
+      >
+        {fullStr}
+      </Base>,
+    );
+
+    // hijackings Math.ceil
+    const originalCeil = Math.ceil;
+    let hasDefaultStr = false;
+
+    // Math.ceil will be used for ellipsis's calculations;
+    Math.ceil = (value) => {
+      const text = container.querySelector('p')?.innerHTML.replace(/<[^>]*>/g, '');
+      if (text && !text.includes('...')) {
+        hasDefaultStr = true;
+      }
+      return originalCeil.call(Math, value);
+    };
+
+    resize(50);
+    await waitFakeTimer(20, 1);
+    // ignore last result
+    hasDefaultStr = false;
+    resize(100);
+    await waitFakeTimer();
+
+    expect(hasDefaultStr).not.toBeTruthy();
+    // reset
+    mockRectSpy.mockRestore();
+    Math.ceil = originalCeil;
+  });
+
+  // https://github.com/ant-design/ant-design/issues/46580
+  it('dynamic to be ellipsis should show tooltip', async () => {
+    const ref = React.createRef<HTMLElement>();
+    render(
+      <Base ellipsis={{ tooltip: 'bamboo' }} component="p" ref={ref}>
+        less
+      </Base>,
+    );
+
+    // Force to narrow
+    offsetWidth = 1;
+    scrollWidth = 100;
+    triggerResize(ref.current!);
+
+    await waitFakeTimer();
+
+    fireEvent.mouseEnter(ref.current!);
+    await waitFakeTimer();
+    expect(document.querySelector('.ant-tooltip')).toBeTruthy();
   });
 });

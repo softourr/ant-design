@@ -1,10 +1,13 @@
+import React, { useContext } from 'react';
 import RCTour from '@rc-component/tour';
 import classNames from 'classnames';
-import React, { useContext } from 'react';
+
+import { useZIndex } from '../_util/hooks/useZIndex';
+import getPlacements from '../_util/placements';
+import zIndexContext from '../_util/zindexContext';
 import type { ConfigConsumerProps } from '../config-provider';
 import { ConfigContext } from '../config-provider';
-import theme from '../theme';
-import getPlacements from '../_util/placements';
+import { useToken } from '../theme/internal';
 import type { TourProps, TourStepProps } from './interface';
 import TourPanel from './panelRender';
 import PurePanel from './PurePanel';
@@ -15,31 +18,43 @@ const Tour: React.FC<TourProps> & { _InternalPanelDoNotUseOrYouWillBeFired: type
 ) => {
   const {
     prefixCls: customizePrefixCls,
-    steps,
-    current,
     type,
     rootClassName,
     indicatorsRender,
+    steps,
     ...restProps
   } = props;
-  const { getPrefixCls, direction } = useContext<ConfigConsumerProps>(ConfigContext);
+  const { getPrefixCls, direction, tour } = useContext<ConfigConsumerProps>(ConfigContext);
   const prefixCls = getPrefixCls('tour', customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle(prefixCls);
-  const { token } = theme.useToken();
+  const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls);
+  const [, token] = useToken();
 
-  const builtinPlacements = getPlacements({
-    arrowPointAtCenter: true,
-    autoAdjustOverflow: true,
-    offset: token.marginXXS,
-    arrowWidth: token.sizePopupArrow,
-    borderRadius: token.borderRadius,
-  });
+  const mergedSteps = React.useMemo<TourProps['steps']>(
+    () =>
+      steps?.map((step) => ({
+        ...step,
+        className: classNames(step.className, {
+          [`${prefixCls}-primary`]: (step.type ?? type) === 'primary',
+        }),
+      })),
+    [steps, type],
+  );
+
+  const builtinPlacements: TourProps['builtinPlacements'] = (config) =>
+    getPlacements({
+      arrowPointAtCenter: config?.arrowPointAtCenter ?? true,
+      autoAdjustOverflow: true,
+      offset: token.marginXXS,
+      arrowWidth: token.sizePopupArrow,
+      borderRadius: token.borderRadius,
+    });
 
   const customClassName = classNames(
     {
       [`${prefixCls}-rtl`]: direction === 'rtl',
     },
     hashId,
+    cssVarCls,
     rootClassName,
   );
 
@@ -48,21 +63,27 @@ const Tour: React.FC<TourProps> & { _InternalPanelDoNotUseOrYouWillBeFired: type
       type={type}
       stepProps={stepProps}
       current={stepCurrent}
+      closeIcon={tour?.closeIcon}
       indicatorsRender={indicatorsRender}
     />
   );
 
-  return wrapSSR(
-    <RCTour
-      {...restProps}
-      rootClassName={customClassName}
-      prefixCls={prefixCls}
-      steps={steps}
-      current={current}
-      animated
-      renderPanel={mergedRenderPanel}
-      builtinPlacements={builtinPlacements}
-    />,
+  // ============================ zIndex ============================
+  const [zIndex, contextZIndex] = useZIndex('Tour', restProps.zIndex);
+
+  return wrapCSSVar(
+    <zIndexContext.Provider value={contextZIndex}>
+      <RCTour
+        {...restProps}
+        zIndex={zIndex}
+        rootClassName={customClassName}
+        prefixCls={prefixCls}
+        animated
+        renderPanel={mergedRenderPanel}
+        builtinPlacements={builtinPlacements}
+        steps={mergedSteps}
+      />
+    </zIndexContext.Provider>,
   );
 };
 

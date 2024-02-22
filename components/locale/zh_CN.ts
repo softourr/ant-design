@@ -1,8 +1,9 @@
 /* eslint-disable no-template-curly-in-string */
 import Pagination from 'rc-pagination/lib/locale/zh_CN';
+
+import type { Locale } from '.';
 import Calendar from '../calendar/locale/zh_CN';
 import DatePicker from '../date-picker/locale/zh_CN';
-import type { Locale } from '.';
 import TimePicker from '../time-picker/locale/zh_CN';
 
 const typeTemplate = '${label}不是一个有效的${type}';
@@ -80,9 +81,6 @@ const localeValues: Locale = {
     copied: '复制成功',
     expand: '展开',
   },
-  PageHeader: {
-    back: '返回',
-  },
   Form: {
     optional: '（可选）',
     defaultValidateMessages: {
@@ -139,6 +137,10 @@ const localeValues: Locale = {
   QRCode: {
     expired: '二维码过期',
     refresh: '点击刷新',
+    scanned: '已扫描',
+  },
+  ColorPicker: {
+    presetEmpty: '暂无',
   },
 };
 

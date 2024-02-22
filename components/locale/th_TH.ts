@@ -1,8 +1,9 @@
 /* eslint-disable no-template-curly-in-string */
 import Pagination from 'rc-pagination/lib/locale/th_TH';
+
+import type { Locale } from '.';
 import Calendar from '../calendar/locale/th_TH';
 import DatePicker from '../date-picker/locale/th_TH';
-import type { Locale } from '.';
 import TimePicker from '../time-picker/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
@@ -21,9 +22,12 @@ const localeValues: Locale = {
     filterConfirm: 'ยืนยัน',
     filterReset: 'รีเซ็ต',
     filterEmptyText: 'ไม่มีตัวกรอง',
+    filterCheckall: 'เลือกรายการทั้งหมด',
+    filterSearchPlaceholder: 'ค้นหาตัวกรอง',
     emptyText: 'ไม่มีข้อมูล',
     selectAll: 'เลือกทั้งหมดในหน้านี้',
     selectInvert: 'กลับสถานะการเลือกในหน้านี้',
+    selectNone: 'ไม่เลือกข้อมูลทั้งหมด',
     selectionAll: 'เลือกข้อมูลทั้งหมด',
     sortTitle: 'เรียง',
     expand: 'แสดงแถวข้อมูล',
@@ -31,6 +35,11 @@ const localeValues: Locale = {
     triggerDesc: 'คลิกเรียงจากมากไปน้อย',
     triggerAsc: 'คลิกเรียงจากน้อยไปมาก',
     cancelSort: 'คลิกเพื่อยกเลิกการเรียง',
+  },
+  Tour: {
+    Next: 'ถัดไป',
+    Previous: 'ย้อนกลับ',
+    Finish: 'เสร็จสิ้น',
   },
   Modal: {
     okText: 'ตกลง',
@@ -71,9 +80,6 @@ const localeValues: Locale = {
     copy: 'คัดลอก',
     copied: 'คัดลอกแล้ว',
     expand: 'ขยาย',
-  },
-  PageHeader: {
-    back: 'ย้อนกลับ',
   },
   Form: {
     optional: '(ไม่จำเป็น)',
@@ -124,6 +130,13 @@ const localeValues: Locale = {
         mismatch: '${label} ไม่ตรงกับรูปแบบ ${pattern}',
       },
     },
+  },
+  Image: {
+    preview: 'ดูตัวอย่าง',
+  },
+  QRCode: {
+    expired: 'คิวอาร์โค้ดหมดอายุ',
+    refresh: 'รีเฟรช',
   },
 };
 

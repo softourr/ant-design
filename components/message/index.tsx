@@ -1,6 +1,8 @@
+import React, { useContext } from 'react';
 import { render } from 'rc-util/lib/React/render';
-import * as React from 'react';
-import ConfigProvider, { globalConfig, warnContext } from '../config-provider';
+
+import { AppConfigContext } from '../app/context';
+import ConfigProvider, { ConfigContext, globalConfig, warnContext } from '../config-provider';
 import type {
   ArgsProps,
   ConfigOptions,
@@ -13,7 +15,7 @@ import PurePanel from './PurePanel';
 import useMessage, { useInternalMessage } from './useMessage';
 import { wrapPromiseFn } from './util';
 
-export { ArgsProps };
+export type { ArgsProps };
 
 let message: GlobalMessage | null = null;
 
@@ -55,25 +57,10 @@ let taskQueue: Task[] = [];
 let defaultGlobalConfig: ConfigOptions = {};
 
 function getGlobalContext() {
-  const {
-    prefixCls: globalPrefixCls,
-    getContainer: globalGetContainer,
-    duration,
-    rtl,
-    maxCount,
-    top,
-  } = defaultGlobalConfig;
-  const mergedPrefixCls = globalPrefixCls ?? globalConfig().getPrefixCls('message');
-  const mergedContainer = globalGetContainer?.() || document.body;
+  const { getContainer, duration, rtl, maxCount, top } = defaultGlobalConfig;
+  const mergedContainer = getContainer?.() || document.body;
 
-  return {
-    prefixCls: mergedPrefixCls,
-    container: mergedContainer,
-    duration,
-    rtl,
-    maxCount,
-    top,
-  };
+  return { getContainer: () => mergedContainer, duration, rtl, maxCount, top };
 }
 
 interface GlobalHolderRef {
@@ -81,33 +68,17 @@ interface GlobalHolderRef {
   sync: () => void;
 }
 
-const GlobalHolder = React.forwardRef<GlobalHolderRef, {}>((_, ref) => {
-  const initializeMessageConfig: () => ConfigOptions = () => {
-    const { prefixCls, container, maxCount, duration, rtl, top } = getGlobalContext();
+const GlobalHolder = React.forwardRef<
+  GlobalHolderRef,
+  { messageConfig: ConfigOptions; sync: () => void }
+>((props, ref) => {
+  const { messageConfig, sync } = props;
 
-    return {
-      prefixCls,
-      getContainer: () => container!,
-      maxCount,
-      duration,
-      rtl,
-      top,
-    };
-  };
+  const { getPrefixCls } = useContext(ConfigContext);
+  const prefixCls = defaultGlobalConfig.prefixCls || getPrefixCls('message');
+  const appConfig = useContext(AppConfigContext);
 
-  const [messageConfig, setMessageConfig] = React.useState<ConfigOptions>(initializeMessageConfig);
-
-  const [api, holder] = useInternalMessage(messageConfig);
-
-  const global = globalConfig();
-  const rootPrefixCls = global.getRootPrefixCls();
-  const rootIconPrefixCls = global.getIconPrefixCls();
-
-  const sync = () => {
-    setMessageConfig(initializeMessageConfig);
-  };
-
-  React.useEffect(sync, []);
+  const [api, holder] = useInternalMessage({ ...messageConfig, prefixCls, ...appConfig.message });
 
   React.useImperativeHandle(ref, () => {
     const instance: MessageInstance = { ...api };
@@ -124,10 +95,27 @@ const GlobalHolder = React.forwardRef<GlobalHolderRef, {}>((_, ref) => {
       sync,
     };
   });
+  return holder;
+});
 
+const GlobalHolderWrapper = React.forwardRef<GlobalHolderRef, {}>((_, ref) => {
+  const [messageConfig, setMessageConfig] = React.useState<ConfigOptions>(getGlobalContext);
+
+  const sync = () => {
+    setMessageConfig(getGlobalContext);
+  };
+
+  React.useEffect(sync, []);
+
+  const global = globalConfig();
+  const rootPrefixCls = global.getRootPrefixCls();
+  const rootIconPrefixCls = global.getIconPrefixCls();
+  const theme = global.getTheme();
+
+  const dom = <GlobalHolder ref={ref} sync={sync} messageConfig={messageConfig} />;
   return (
-    <ConfigProvider prefixCls={rootPrefixCls} iconPrefixCls={rootIconPrefixCls}>
-      {holder}
+    <ConfigProvider prefixCls={rootPrefixCls} iconPrefixCls={rootIconPrefixCls} theme={theme}>
+      {global.holderRender ? global.holderRender(dom) : dom}
     </ConfigProvider>
   );
 });
@@ -145,7 +133,7 @@ function flushNotice() {
     // Delay render to avoid sync issue
     act(() => {
       render(
-        <GlobalHolder
+        <GlobalHolderWrapper
           ref={(node) => {
             const { instance, sync } = node || {};
 
@@ -262,8 +250,9 @@ function open(config: ArgsProps): MessageType {
 }
 
 function typeOpen(type: NoticeType, args: Parameters<TypeOpen>): MessageType {
-  // Warning if exist theme
-  if (process.env.NODE_ENV !== 'production') {
+  const global = globalConfig();
+
+  if (process.env.NODE_ENV !== 'production' && !global.holderRender) {
     warnContext('message');
   }
 
@@ -343,7 +332,7 @@ methods.forEach((type: keyof MessageMethods) => {
 // ==============================================================================
 const noop = () => {};
 
-/** @private Only Work in test env */
+/** @internal Only Work in test env */
 // eslint-disable-next-line import/no-mutable-exports
 export let actWrapper: (wrapper: any) => void = noop;
 
@@ -353,7 +342,7 @@ if (process.env.NODE_ENV === 'test') {
   };
 }
 
-/** @private Only Work in test env */
+/** @internal Only Work in test env */
 // eslint-disable-next-line import/no-mutable-exports
 export let actDestroy = noop;
 

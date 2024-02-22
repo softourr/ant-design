@@ -1,9 +1,9 @@
-import { css, Global } from '@emotion/react';
 import React from 'react';
-import useSiteToken from '../../../hooks/useSiteToken';
+import { css, Global } from '@emotion/react';
+import { useTheme } from 'antd-style';
 
 export default () => {
-  const { token } = useSiteToken();
+  const token = useTheme();
 
   return (
     <Global
@@ -29,7 +29,7 @@ export default () => {
 
         code[class*='language-'],
         pre[class*='language-'] {
-          color: black;
+          color: ${token.colorText};
           font-family: 'Lucida Console', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
           line-height: 1.5;
           direction: ltr;

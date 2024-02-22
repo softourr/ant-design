@@ -3,8 +3,8 @@ category: Components
 subtitle: 气泡卡片
 group: 数据展示
 title: Popover
-cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*XhL3QpRw92kAAAAAAAAAAAAADrJ8AQ/original
-coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*RMP_TrdZ3nsAAAAAAAAAAAAADrJ8AQ/original
+cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*kfW5RrfF4L8AAAAAAAAAAAAADrJ8AQ/original
+coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*6b8fSKVVtXIAAAAAAAAAAAAADrJ8AQ/original
 demo:
   cols: 2
 ---
@@ -28,8 +28,11 @@ demo:
 <code src="./demo/hover-with-click.tsx">悬停点击弹出窗口</code>
 <code src="./demo/render-panel.tsx" debug>_InternalPanelDoNotUseOrYouWillBeFired</code>
 <code src="./demo/wireframe.tsx" debug>线框风格</code>
+<code src="./demo/component-token.tsx" debug>组件 Token</code>
 
 ## API
+
+通用属性参考：[通用属性](/docs/react/common-props)
 
 | 参数    | 说明     | 类型                         | 默认值 | 版本 |
 | ------- | -------- | ---------------------------- | ------ | ---- |
@@ -41,3 +44,19 @@ demo:
 ## 注意
 
 请确保 `Popover` 的子元素能接受 `onMouseEnter`、`onMouseLeave`、`onFocus`、`onClick` 事件。
+
+## 主题变量（Design Token）
+
+<ComponentTokenTable component="Popover"></ComponentTokenTable>
+
+## FAQ
+
+### 为何在严格模式中有时候会出现 findDOMNode is deprecated 这个警告？
+
+这是由于 `rc-trigger` 的实现方式导致的，`rc-trigger` 强制要求 children 能够接受 ref，否则就会 fallback 到 findDOMNode，所以 children 需要是原生 html 标签，如果不是，则需要使用 `React.forwardRef` 把 `ref` 透传到原生 html 标签。
+
+### 为何有时候 HOC 组件无法生效？
+
+请确保 `Popover` 的子元素能接受 `onMouseEnter`、`onMouseLeave`、`onPointerEnter`、`onPointerLeave`、`onFocus`、`onClick` 事件。
+
+更多问题，请参考 [Tooltip FAQ](/components/tooltip#faq)。

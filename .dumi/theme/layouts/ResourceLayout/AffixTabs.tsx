@@ -1,13 +1,14 @@
-import { css } from '@emotion/react';
-import { Tabs } from 'antd';
-import throttle from 'lodash/throttle';
 import * as React from 'react';
+import { Tabs } from 'antd';
+import { createStyles } from 'antd-style';
+import classNames from 'classnames';
+import throttle from 'lodash/throttle';
+
 import scrollTo from '../../../../components/_util/scrollTo';
-import useSiteToken from '../../../hooks/useSiteToken';
 
-const useStyle = () => {
-  const { token } = useSiteToken();
+const listenerEvents = ['scroll', 'resize'] as const;
 
+const useStyle = createStyles(({ token, css }) => {
   const { boxShadowSecondary, antCls } = token;
 
   return {
@@ -22,7 +23,9 @@ const useStyle = () => {
       box-shadow: ${boxShadowSecondary};
       transform: translate3d(0, -100%, 0);
       opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
+      transition:
+        opacity 0.3s,
+        transform 0.3s;
 
       ${antCls}-tabs {
         max-width: 1208px;
@@ -49,7 +52,7 @@ const useStyle = () => {
       text-transform: capitalize;
     `,
   };
-};
+});
 
 const VIEW_BALANCE = 32;
 
@@ -57,9 +60,11 @@ const AffixTabs: React.FC = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const idsRef = React.useRef<string[]>([]);
   const [loaded, setLoaded] = React.useState(false);
-  const [fixedId, setFixedId] = React.useState<string | null>(null);
+  const [fixedId, setFixedId] = React.useState<string | undefined>(undefined);
 
-  const { affixTabs, affixTabsFixed, span } = useStyle();
+  const {
+    styles: { affixTabs, affixTabsFixed, span },
+  } = useStyle();
 
   function scrollToId(id: string) {
     const targetNode = document.getElementById(id);
@@ -71,7 +76,8 @@ const AffixTabs: React.FC = () => {
   }
 
   React.useEffect(() => {
-    idsRef.current = Array.from(document.querySelectorAll('h2[id]')).map(({ id }) => id);
+    const nodeList = document.querySelectorAll<HTMLHeadingElement>('h2[id]');
+    idsRef.current = Array.from(nodeList).map<string>(({ id }) => id);
     setLoaded(true);
   }, []);
 
@@ -98,31 +104,28 @@ const AffixTabs: React.FC = () => {
         }
       }
 
-      setFixedId(null);
+      setFixedId(undefined);
     }
 
     return throttle(doSync);
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener('scroll', onSyncAffix);
-    window.addEventListener('resize', onSyncAffix);
+    listenerEvents.forEach((event) => window.addEventListener(event, onSyncAffix));
     onSyncAffix();
-
     return () => {
-      window.removeEventListener('scroll', onSyncAffix);
-      window.removeEventListener('resize', onSyncAffix);
+      listenerEvents.forEach((event) => window.removeEventListener(event, onSyncAffix));
     };
   }, []);
 
   return (
-    <div css={[affixTabs, fixedId && affixTabsFixed]} ref={containerRef}>
+    <div className={classNames(affixTabs, fixedId && affixTabsFixed)} ref={containerRef}>
       <Tabs
         activeKey={fixedId}
         onChange={scrollToId}
         items={idsRef.current.map((id) => ({
           key: id,
-          label: <span css={span}>{id.replace(/-/g, ' ')}</span>,
+          label: <span className={span}>{id.replace(/-/g, ' ')}</span>,
         }))}
       />
     </div>

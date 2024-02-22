@@ -1,9 +1,10 @@
-import { css } from '@emotion/react';
-import { Button, Space, Typography } from 'antd';
-import { Link, useLocation } from 'dumi';
 import * as React from 'react';
+import { Button, Flex, Typography } from 'antd';
+import { createStyles, css, useTheme } from 'antd-style';
+import classNames from 'classnames';
+import { Link, useLocation } from 'dumi';
+
 import useLocale from '../../../hooks/useLocale';
-import useSiteToken from '../../../hooks/useSiteToken';
 import SiteContext from '../../../theme/slots/SiteContext';
 import * as utils from '../../../theme/utils';
 import { GroupMask } from './Group';
@@ -23,10 +24,8 @@ const locales = {
 };
 
 const useStyle = () => {
-  const { token } = useSiteToken();
   const { isMobile } = React.useContext(SiteContext);
-
-  return {
+  return createStyles(({ token }) => ({
     titleBase: css`
       h1& {
         font-family: AliPuHui, ${token.fontFamily};
@@ -48,22 +47,19 @@ const useStyle = () => {
             font-size: 68px;
           }
         `,
-  };
+    btnWrap: css`
+      margin-bottom: ${token.marginXL}px;
+    `,
+  }))();
 };
 
-export interface BannerProps {
-  children?: React.ReactNode;
-}
-
-export default function Banner({ children }: BannerProps) {
+const Banner: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [locale] = useLocale(locales);
   const { pathname, search } = useLocation();
-  const { token } = useSiteToken();
-  const styles = useStyle();
+  const token = useTheme();
+  const { styles } = useStyle();
   const { isMobile } = React.useContext(SiteContext);
-
   const isZhCN = utils.isZhCN(pathname);
-
   return (
     <>
       {/* Banner Placeholder Motion */}
@@ -146,7 +142,7 @@ export default function Banner({ children }: BannerProps) {
             alt="bg"
           />
 
-          <Typography.Title level={1} css={[styles.titleBase, styles.title]}>
+          <Typography.Title level={1} className={classNames(styles.titleBase, styles.title)}>
             Ant Design 5.0
           </Typography.Title>
           <Typography.Paragraph
@@ -159,8 +155,7 @@ export default function Banner({ children }: BannerProps) {
           >
             <div>{locale.slogan}</div>
           </Typography.Paragraph>
-
-          <Space size="middle" style={{ marginBottom: token.marginFar }}>
+          <Flex gap="middle" className={styles.btnWrap}>
             <Link to={utils.getLocalizedPathname('/components/overview/', isZhCN, search)}>
               <Button size="large" type="primary">
                 {locale.start}
@@ -169,11 +164,12 @@ export default function Banner({ children }: BannerProps) {
             <Link to={utils.getLocalizedPathname('/docs/spec/introduce/', isZhCN, search)}>
               <Button size="large">{locale.designLanguage}</Button>
             </Link>
-          </Space>
-
+          </Flex>
           {children}
         </GroupMask>
       </div>
     </>
   );
-}
+};
+
+export default Banner;
