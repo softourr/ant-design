@@ -66,13 +66,9 @@
 
 [![](https://user-images.githubusercontent.com/507615/209472919-6f7e8561-be8c-4b0b-9976-eb3c692aa20a.png)](https://ant.design)
 
-<<<<<<< HEAD
 한국어 | [원본](https://github.com/ant-design-korea/ant-design.git)
 
 ## ✨ 기능
-=======
-## ✨ Features
->>>>>>> upstream/master
 
 - 🌈 웹 애플리케이션을 위한 엔터프라이즈급 UI 디자인.
 - 📦 즉시 사용할 수 있는 고품질 React 컴포넌트.
@@ -101,15 +97,11 @@ npm install antd
 yarn add antd
 ```
 
-<<<<<<< HEAD
-## 🔨 사용법
-=======
 ```bash
 pnpm add antd
 ```
 
-## 🔨 Usage
->>>>>>> upstream/master
+## 🔨 사용법
 
 ```tsx
 import { Button, DatePicker } from 'antd';
@@ -122,19 +114,7 @@ export default () => (
 );
 ```
 
-<<<<<<< HEAD
-### TypeScript
-
-`antd`는 TypeScript로 작성됐으며, 모든 타입이 정의됐습니다, [TypeScript 사용하기](https://ant.design/docs/react/use-in-typescript)로 시작하세요.
-
-## 🌍 국제화
-
-`antd`는 수십개의 언어를 지원합니다., [i18n](https://ant.design/docs/react/i18n)를 참고해주세요.
-
 ## 🔗 링크
-=======
-## 🔗 Links
->>>>>>> upstream/master
 
 - [Home page](https://ant.design/)
 - [Components Overview](https://ant.design/components/overview)
@@ -176,13 +156,6 @@ $ npm start
 
 ## 🤝 컨트리뷰트 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-<<<<<<< HEAD
-우리들의 [컨트리뷰트 가이드](https://ant.design/docs/react/contributing)를 읽고 더 나은 antd를 함께 만들어봐요.
-
-모든 컨트리뷰터들을 환영합니다. 그 전에 다음 문서를 읽어주세요. [CONTRIBUTING.md](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md). 당신은 어떤 아이디어든 [풀 리퀘스트](https://github.com/ant-design/ant-design/pulls)나 [GitHub 이슈](https://github.com/ant-design/ant-design/issues)에 제출할 수 있습니다. 만약 코드를 개선하고 싶다면, [개발 지침](https://github.com/ant-design/ant-design/wiki/Development)을 확인하세요, 그리고 좋은 시간 보내세요! :)
-
-만약 당신이 콜라보레이터라면, 풀 리퀘스트를 생성할 때 부디 [풀 리퀘스트 원칙](https://github.com/ant-design/ant-design/wiki/PR-principle)과 [콜라보레이터 템플릿](https://github.com/ant-design/ant-design/compare?expand=1&template=collaborator.md)을 따라주세요.
-=======
 <!-- Copy-paste in your Readme.md file -->
 
 <a href="https://next.ossinsight.io/widgets/official/compose-recent-active-contributors?repo_id=34526884&limit=30" target="_blank" style="display: block" align="center">
@@ -193,7 +166,6 @@ $ npm start
 </a>
 
 <!-- Made with [OSS Insight](https://ossinsight.io/) -->
->>>>>>> upstream/master
 
 Let's build a better antd together.
 
