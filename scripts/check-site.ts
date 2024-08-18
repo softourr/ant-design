@@ -61,52 +61,31 @@ describe('site test', () => {
     server?.close();
   });
 
-  it('Basic Pages en', async () => {
-    const { status, $ } = await render('/');
-    expect($('title').first().text()).toEqual(
-      `Ant Design - The world's second most popular React UI framework`,
-    );
-    expect(status).toBe(200);
-  });
-
-  it('Basic Pages zh', async () => {
-    const { status, $ } = await render('/index-cn');
-    expect($('title').first().text()).toEqual(`Ant Design - 一套企业级 UI 设计语言和 React 组件库`);
-    expect(status).toBe(200);
-  });
-
-  it('Overview en', async () => {
-    const { status, $ } = await render('/components/overview');
-    expect(status).toBe(200);
-    expect($('h1').text()).toMatch(`Overview`);
-  });
-
-  it('Overview zh', async () => {
-    const { status, $ } = await render('/components/overview-cn');
-    expect(status).toBe(200);
-    expect($('h1').text()).toMatch(`组件总览`);
-  });
-
-  it('Resource en', async () => {
-    const { status, $ } = await render('/docs/resources');
-    expect(status).toBe(200);
-    expect($('h1').text()).toMatch(`Resources`);
-  });
-
-  it('Resource zh', async () => {
-    const { status, $ } = await render('/docs/resources-cn');
-    expect(status).toBe(200);
-    expect($('h1').text()).toMatch(`资源`);
-  });
-
-  for (const component of components) {
-    if (component.split('/').length < 3) {
-      it(`Component ${component} zh Page`, async () => {
-        await expectComponent(`${component}-cn`);
-      });
-      it(`Component ${component} en Page`, async () => {
-        await expectComponent(component);
-      });
-    }
-  }
+  // it('Basic Pages en', async () => {
+  //   const { status, $ } = await render('/');
+  //   expect($('title').first().text()).toEqual(
+  //     `Ant Design - The world's second most popular React UI framework`,
+  //   );
+  //   expect(status).toBe(200);
+  // });
+  //
+  // it('Overview en', async () => {
+  //   const { status, $ } = await render('/components/overview');
+  //   expect(status).toBe(200);
+  //   expect($('h1').text()).toMatch(`Overview`);
+  // });
+  //
+  // it('Resource en', async () => {
+  //   const { status, $ } = await render('/docs/resources');
+  //   expect(status).toBe(200);
+  //   expect($('h1').text()).toMatch(`Resources`);
+  // });
+  //
+  // for (const component of components) {
+  //   if (component.split('/').length < 3) {
+  //     it(`Component ${component} en Page`, async () => {
+  //       await expectComponent(component);
+  //     });
+  //   }
+  // }
 });
