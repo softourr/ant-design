@@ -160,18 +160,11 @@ const RoutesPlugin = (api: IApi) => {
 
     const extraRoutesList: IRoute[] = [
       {
-        id: 'changelog-cn',
-        path: 'changelog-cn',
-        absPath: '/changelog-cn',
-        parentId: 'DocLayout',
-        file: resolve('../../CHANGELOG.ko-KR.md'),
-      },
-      {
         id: 'changelog',
         path: 'changelog',
         absPath: '/changelog',
         parentId: 'DocLayout',
-        file: resolve('../../CHANGELOG.en-US.md'),
+        file: resolve('../../CHANGELOG.ko-KR.md'),
       },
     ];
 
