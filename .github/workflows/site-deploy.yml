@@ -43,4 +43,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           external_repository: ant-design-korea/ant-design-korea.github.io
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
           force_orphan: true
