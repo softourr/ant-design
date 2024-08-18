@@ -164,7 +164,7 @@ const RoutesPlugin = (api: IApi) => {
         path: 'changelog-cn',
         absPath: '/changelog-cn',
         parentId: 'DocLayout',
-        file: resolve('../../CHANGELOG.zh-CN.md'),
+        file: resolve('../../CHANGELOG.ko-KR.md'),
       },
       {
         id: 'changelog',
