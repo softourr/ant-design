@@ -60,6 +60,9 @@ describe('site test', () => {
   afterAll(() => {
     server?.close();
   });
+  it('Expect 1 to be 1', () => {
+    expect(1).toBe(1);
+  });
 
   // it('Basic Pages en', async () => {
   //   const { status, $ } = await render('/');
