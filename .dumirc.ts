@@ -30,10 +30,7 @@ export default defineConfig({
     atomDirs: [{ type: 'component', dir: 'components' }],
     codeBlockMode: 'passive',
   },
-  locales: [
-    { id: 'en-US', name: 'English', suffix: '' },
-    { id: 'zh-CN', name: '中文', suffix: '-cn' },
-  ],
+  locales: [{ id: 'ko-KR', name: '한국어', suffix: '' }],
   define: {
     antdReproduceVersion: version,
   },
@@ -56,9 +53,12 @@ export default defineConfig({
   analytics: {
     ga_v2: 'UA-72788897-1',
   },
-  analyze: process.env.NODE_ENV === 'production' ? false : {
-    analyzerPort: 'auto',
-  },
+  analyze:
+    process.env.NODE_ENV === 'production'
+      ? false
+      : {
+          analyzerPort: 'auto',
+        },
   links: [
     {
       rel: 'prefetch',
