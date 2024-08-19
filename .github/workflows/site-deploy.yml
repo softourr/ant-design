@@ -45,3 +45,4 @@ jobs:
           external_repository: ant-design-korea/ant-design-korea.github.io
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           force_orphan: true
+    timeout-minutes: 30
