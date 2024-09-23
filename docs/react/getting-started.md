@@ -1,9 +1,9 @@
 ---
 group:
-  title: Basic Usage
+  title: 기본 사용법
   order: 0
 order: 0
-title: Getting Started
+title: 시작하기
 ---
 
 Ant Design React는 프로그래머들에게 **좋은 개발 경험**을 제공하기 위해 전념하고 있습니다. 시작에 앞서, learn [React](https://react.dev) 를 먼저 배우는 것을 추천드리며, [Node.js](https://nodejs.org/) 버전 16 혹은 이상을 올바르게 설치하고 구성하는 것을 권장합니다.

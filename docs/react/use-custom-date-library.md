@@ -1,8 +1,8 @@
 ---
 group:
-  title: Advanced
+  title: 고급기능
 order: 4
-title: Use custom date library
+title: 커스텀 날짜 라이브러리 사용하기
 ---
 
 기본적으로 Ant Design은 시간과 날짜를 다루기 위해 [Day.js](https://day.js.org)를 사용하고 있습니다.  
