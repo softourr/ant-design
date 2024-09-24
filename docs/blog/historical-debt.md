@@ -11,7 +11,7 @@ Ant Design을 업그레이드 할 때, 아마 이런 메세지를 받은 적이 
 Warning: [antd: XXX] `old prop` is deprecated. Please use `new prop` instead.
 ```
 
-이런 메시지가 뜨는 이유는 antd의 API Design의 잘못된 설계로 인해 발생한 과거의 기술 부채 때문입니다. 예를 들어, antd v3 버전 이하의 TreeSelect와 Select가 존재합니다. TreeSelect는 Select의 코드를 직접 복사하고 기반으로 확장되어 왔습니다. 그러나 두 컴포넌트 간의 검색 스타일는 차이점이 존재합니다:
+이런 메시지가 뜨는 이유는 antd의 API Design의 잘못된 설계로 인해 발생한 과거의 기술 부채 때문입니다. 예를 들어, antd v3 버전 이하의 TreeSelect와 Select가 존재합니다. TreeSelect는 Select의 코드를 직접 복사하고 기반으로 확장되어 왔습니다. 그러나 두 컴포넌트 간의 검색 스타일에는 차이점이 존재합니다:
 
 <img alt="Select" height="162" src="https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*uDbxSKTLU8YAAAAAAAAAAAAADrJ8AQ/original" />
 
