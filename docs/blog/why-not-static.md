@@ -6,7 +6,7 @@ zhihu_url: https://zhuanlan.zhihu.com/p/633333904
 yuque_url: https://www.yuque.com/ant-design/ant-design/gkkyx81eihftzzq7
 ---
 
-> `message.success`를 잘 쓰고 있는데 왜 훅를 사용하라고 경고를 하죠? antd가 점점 별로에요. 잘 있어요!
+> `message.success`를 잘 쓰고 있는데 왜 훅을 사용하라고 경고를 하죠? antd가 점점 별로네요. 잘 있어요!
 
 정적 메서드를 훅으로 대체하는 것에 대한 불만이 많다는 이야기를 들었습니다. 이게 고통스럽다는 걸 잘 알고 있지만, 여러 해에 걸친 고민 끝에 v5에서 변경하기로 결정했습니다(사실 이 논의는 훅 보다도 오래된 것이지만, 훅 이전에는 간단한 구현 방법이 없어서 그냥 미뤄두었습니다).
 
