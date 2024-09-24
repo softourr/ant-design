@@ -42,7 +42,7 @@ Multiple 모드를 사용했을 때, Select 컴포넌트는 Search Box 내의 It
 
 #### 경고 필터
 
-ConfigProvider의 `warning` 속성을 통해 Deprecated에 관련된 집계할 수 있습니다:
+ConfigProvider의 `warning` 속성을 통해 Deprecated에 관련된 정보를 집계할 수 있습니다:
 
 ```tsx
 <ConfigProvider warning={{ strict: false }} />
