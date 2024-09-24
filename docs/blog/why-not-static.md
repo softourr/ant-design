@@ -53,7 +53,7 @@ const Demo = () => (
 맞습니다. 하지만 이는 실제로 컨텍스트를 소비하는 것이 아니라 매우 해킹 같은 구현을 한 것입니다. 사용자가 ConfigProvider를 통해 `locale` 속성을 제공하면, 이를 전역 변수에 임시로 저장합니다. 그리고 정적 메서드가 호출될 때 이 값을 사용하여 채웁니다 :
 
 ```tsx
-// Sample. Not real world code.
+// 샘플입니다. 실제 코드가 아닙니다.
 let globalLocale = null;
 
 const ConfigProvider = (props) => {
@@ -93,7 +93,7 @@ const Demo = () => {
 
   return (
     <>
-      {/* Different insert holder position will get different context */}
+      {/* 삽입 홀더 위치에 따라 다른 컨텍스트가 제공됩니다. */}
       {contextHolder}
       <Button type="primary" onClick={info}>
         Display normal message
