@@ -38,10 +38,13 @@ jobs:
         run: echo "VERSION=$(echo ${{ github.ref_name }} | sed 's/\./-/g')" >> $GITHUB_OUTPUT
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          publish_dir: ./_site
-          external_repository: https://github.com/ant-design-korea/ant-design-korea.github.io.git
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          force_orphan: true
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name "antd-kr"
+          git config --global user.email "antd-kr@example.com"
+          git remote add target_repo git@github.com:ant-design-korea/ant-design-korea.github.io.git
+          git push target_repo main
     timeout-minutes: 30
