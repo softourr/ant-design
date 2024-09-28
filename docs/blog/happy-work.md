@@ -6,13 +6,13 @@ author: zombieJ
 
 <!-- Release = 릴리스 (한국어 내에서 발음 그대로 음차하여 사용하는 경우가 더 많다고 판단됨) -->
 
-지난 v5 릴리즈 발표에서, 우리 디자인 팀은 happy work 테마를 제공할 것이라고 언급했습니다. 여전히 이 작업은 진행 중입니다, 그러나 몇몇 작업에서 진전을 보였기에 여러분과 이를 공유하고자 합니다.
+지난 v5 릴리스 발표에서, 우리 디자인 팀은 happy work 테마를 제공할 것이라고 언급했습니다. 여전히 이 작업은 진행 중입니다, 그러나 몇몇 작업에서 진전을 보였기에 여러분과 이를 공유하고자 합니다.
 
 ## TL;DR
 
 <!-- 실제로는 Theme Effect (테마라고 번역하는 것이 더 와닿을 것이라고 생각하여 이렇게 번역함) -->
 
-이제 `@ant-design/happy-work-theme`를 통해 happy work 테마로 전환할 수 있습니다 (더 궁굼한 사항이 있다면 계속해서 읽어주세요):
+이제 `@ant-design/happy-work-theme`를 통해 happy work 테마로 전환할 수 있습니다 (더 궁금한 사항이 있다면 계속해서 읽어주세요):
 
 ```tsx
 import { HappyProvider } from '@ant-design/happy-work-theme';
@@ -61,7 +61,7 @@ const Button = (
 <!-- 의미를 더 살리기 위해서 표현과 문장 구조를 변경함 (이해를 돕기 위해서 생략된 단어를 다시 추가했다) -->
 <!-- Wave Customization Ability를 Wave 컴포넌트의 유연성으로 번역하였음 (괜찮은걸까?) -->
 
-초기에 Wave 컴포넌트를 설계할 때 ([#40111](https://github.com/ant-design/ant-design/pull/40111)), 우리는 Wave 컴포넌트의 유연성을 Design Token을 통해 관리하길 원했습니다. 그러나 이 방식은 기존의 `string | number` 타입을 `string | number | Function<T>` 로 변경하며 Design Token을 더 복잡하게 만들 것이 분명했습니다. 이를 API 설계 관점에도 보아도 `Function<T>` 는 좋은 코드가 아니며, 커스텀에 대한 새로운 요구사항이 발생한다면 함수의 유형이 다양해지며 컴포넌트의 복잡도는 더욱 올라갈 것입니다. 이런 다양한 이유들로 인해 PR [#40111](https://github.com/ant-design/ant-design/pull/40111)은 여전히 초안으로 머물러있습니다.
+초기에 Wave 컴포넌트를 설계할 때 ([#40111](https://github.com/ant-design/ant-design/pull/40111)), 우리는 Wave 컴포넌트의 유연성을 Design Token을 통해 관리하길 원했습니다. 그러나 이 방식은 기존의 `string | number` 타입을 `string | number | Function<T>` 로 변경하며 Design Token을 더 복잡하게 만들 것이 분명했습니다. 이를 API 설계 관점에서 보아도 `Function<T>` 는 좋은 코드가 아니며, 커스텀에 대한 새로운 요구사항이 발생한다면 함수의 유형이 다양해지며 컴포넌트의 복잡도는 더욱 올라갈 것입니다. 이런 다양한 이유들로 인해 PR [#40111](https://github.com/ant-design/ant-design/pull/40111)은 여전히 초안으로 머물러있습니다.
 
 ### ConfigProvider
 
@@ -85,7 +85,7 @@ const Button = (
 type ShowEffect = (target: HTMLElement, info: { component: string; token: GlobalToken }) => void;
 ```
 
-Design Token을 통해, 현재 테마에 알맞는 효과를 구현할 수 있습니다. 예를 들어서 문서 초반의 GIF의 경우, 테마의 색상이 변경되면 이를 가져온 뒤 해당 효과를 추가할 수 있습니다.
+Design Token을 통해, 현재 테마에 알맞은 효과를 구현할 수 있습니다. 예를 들어서 문서 초반의 GIF의 경우, 테마의 색상이 변경되면 이를 가져온 뒤 해당 효과를 추가할 수 있습니다.
 
 ## 마지막으로!
 
