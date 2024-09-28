@@ -85,7 +85,7 @@ const Button = (
 type ShowEffect = (target: HTMLElement, info: { component: string; token: GlobalToken }) => void;
 ```
 
-Design Token을 통해, 현재 테마에 알맞는 효과를 구현할 수 있습니다. 예를 들어서 글 초반에 있는 GIF의 경우, 테마의 색상이 변경되면 해당 색상을 가져온 뒤 해당 효과를 추가할 수 있습니다.
+Design Token을 통해, 현재 테마에 알맞는 효과를 구현할 수 있습니다. 예를 들어서 문서 초반의 GIF의 경우, 테마의 색상이 변경되면 이를 가져온 뒤 해당 효과를 추가할 수 있습니다.
 
 ## 마지막으로!
 
