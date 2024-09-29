@@ -4,13 +4,9 @@ date: 2023-08-04
 author: zombieJ
 ---
 
-<!-- Release = 릴리스 (한국어 내에서 발음 그대로 음차하여 사용하는 경우가 더 많다고 판단됨) -->
-
 지난 v5 릴리스 발표에서, 우리 디자인 팀은 happy work 테마를 제공할 것이라고 언급했습니다. 작업은 여전히 진행 중이지만, 몇몇 작업에서 진전을 보였기에 여러분과 이를 공유하고자 합니다.
 
 ## 한 줄 요약!
-
-<!-- 의견 수렴하여 번역을 수정하였음. -->
 
 이제 `@ant-design/happy-work-theme`를 통해 테마 효과를 전환할 수 있습니다 (더 궁금한 사항이 있다면 계속해서 읽어주세요):
 
@@ -28,8 +24,6 @@ export default () => (
 
 ## 커스텀 물결 효과
 
-<!-- 의견 수렴 및 중국어 기준으로, 물결 효과로 번역을 변경하였음 -->
-
 Ant Design에는 클릭 시 물결 효과가 발생하는 특별한 컴포넌트가 존재합니다. 이는 다음과 같이 다양한 곳에서 확인할 수 있습니다:
 
 - <img alt="Button" height="110" src="https://github.com/react-component/picker/assets/5378891/60aaad50-cfd5-4c1f-b91f-0be217877f3f" />
@@ -38,8 +32,6 @@ Ant Design에는 클릭 시 물결 효과가 발생하는 특별한 컴포넌트
 - <img alt="Switch" height="84" src="https://github.com/react-component/picker/assets/5378891/16abcee6-32d0-4075-bc4c-440d8aade067" />
 
 지난 메이저 버전에서는 이 물결 효과를 마음대로 수정할 수 없었습니다. 만약 이 효과를 끄고 싶다면, 개발자들은 이를 위한 "마법의 코드"가 필요했었죠. 이 때문에 디자인 팀은 happy work 테마를 제안했고, 개발자로서 우리는 변화를 불러올 적절한 시기라고 생각했습니다.
-
-<!-- 중국어 기준으로, 이를 고유명사라고 생각하기 때문에 번역하지 않았음 -->
 
 ### Wave 컴포넌트
 
@@ -54,13 +46,9 @@ const Button = (
 );
 ```
 
-<!-- Design Token을 통해서 새로운 효과를 정의하는 구조로 다음과 같이 번역하였음 (피동 -> 능동) -->
-
 초기에 이를 설계할 때 ([#40111](https://github.com/ant-design/ant-design/pull/40111)), 커스텀 물결 효과를 Design Token을 통해 관리하길 원했습니다. 그러나 이 방식은 기존의 `string | number` 타입을 `string | number | Function<T>` 로 변경하며 Design Token을 더 복잡하게 만들 것이 분명했습니다. 이를 API 설계 관점에서 보아도 `Function<T>` 는 좋은 코드가 아니며, 커스텀에 대한 새로운 요구사항이 발생한다면 함수의 유형이 다양해지면서 컴포넌트의 복잡도는 더욱 올라갈 것입니다. 이런 다양한 이유들로 인해 PR [#40111](https://github.com/ant-design/ant-design/pull/40111)은 여전히 초안에 머물러있습니다.
 
 ### ConfigProvider
-
-<!-- 표현을 너무 축약했다고 생각해서, 문장을 추가적으로 넣었다. -->
 
 다음으로, 우리는 이를 ConfigProvider에 추가하기로 했습니다. ConfigProvider는 전역 설정 컴포넌트로 모든 자식 컴포넌트에 영향을 끼칠 수 있고, API를 통해 다양한 컴포넌트를 설정할 수 있습니다. 따라서 우리는 `wave` 속성만을 추가하면 되었기 때문에 ConfigProvider에 이를 추가하였습니다:
 
