@@ -67,7 +67,7 @@ const Button = (
 
 <!-- 표현을 너무 축약했다고 생각해서, 문장을 추가적으로 넣었다. -->
 
-다음으로, 우리는 이를 ConfigProvider에 추가하기로 했습니다. ConfigProvider는 글로벌 설정 컴포넌트로 모든 자식 컴포넌트에 영향을 끼칠 수 있고, API를 통해 다양한 컴포넌트를 설정할 수 있습니다. 따라서 우리는 `wave` 속성만을 추가하면 되었기 때문에 ConfigProvider에 이를 추가하였습니다:
+다음으로, 우리는 이를 ConfigProvider에 추가하기로 했습니다. ConfigProvider는 전역 설정 컴포넌트로 모든 자식 컴포넌트에 영향을 끼칠 수 있고, API를 통해 다양한 컴포넌트를 설정할 수 있습니다. 따라서 우리는 `wave` 속성만을 추가하면 되었기 때문에 ConfigProvider에 이를 추가하였습니다:
 
 ```tsx
 <ConfigProvider wave={{ showEffect }}>
