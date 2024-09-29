@@ -30,7 +30,7 @@ export default () => (
 
 <!-- 의견 수렴 및 중국어 기준으로, 물결 효과로 번역을 변경하였음 -->
 
-Ant Design에는 클릭 시 물결 효과가 발생하는 특별한 컴포넌트가 존재합니다. 이는 다음과 같은 컴포넌트에서 확인할 수 있습니다:
+Ant Design에는 클릭 시 물결 효과가 발생하는 특별한 컴포넌트가 존재합니다. 이는 다음과 같이 다양한 곳에서 확인할 수 있습니다:
 
 - <img alt="Button" height="110" src="https://github.com/react-component/picker/assets/5378891/60aaad50-cfd5-4c1f-b91f-0be217877f3f" />
 - <img alt="Checkbox" height="70" src="https://github.com/react-component/picker/assets/5378891/f7d64d64-29db-4c9c-a0d6-de8b36a31d48" />
