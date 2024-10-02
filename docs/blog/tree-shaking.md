@@ -5,7 +5,7 @@ author: zombieJ
 juejin_url: https://juejin.cn/post/7248424501813674021
 ---
 
-현대의 JS 애플리케이션에서는 모듈식 패키징 도구를 통해 사용되지 않는 일부 모듈 코드를 자동으로 제거할 수 있습니다. 이 과정을 [트리 쉐이킹(Tree Shaking)](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)이라고 합니다. 그러나 이 과정에 익숙해지면, 실제로는 그렇게 완벽하지 않다는 것을 알게 될 것입니다. 우리는 여전히 최적의 번들 사이즈 최적화 효과를 얻기 위해서 추가적인 작업이 필요합니다. 오늘은 ConfigProvider가 트리 쉐이킹을 실패하게 만드는 문제에 대해 이야기해 보겠습니다.
+현대의 JS 애플리케이션에서는 모듈식 패키징 도구를 통해 사용되지 않는 일부 모듈 코드를 자동으로 제거할 수 있습니다. 이 과정을 [트리 쉐이킹(Tree Shaking)](https://developer.mozilla.org/ko/docs/Glossary/Tree_shaking)이라고 합니다. 그러나 이 과정에 익숙해지면, 실제로는 그렇게 완벽하지 않다는 것을 알게 될 것입니다. 우리는 여전히 최적의 번들 사이즈 최적화 효과를 얻기 위해서 추가적인 작업이 필요합니다. 오늘은 ConfigProvider가 트리 쉐이킹을 실패하게 만드는 문제에 대해 이야기해 보겠습니다.
 
 ### ConfigProvider 그리고 rc-field-form
 
