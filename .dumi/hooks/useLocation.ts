@@ -4,7 +4,7 @@ import { useLocation as useDumiLocation } from 'dumi';
 import useLocale from './useLocale';
 
 function clearPath(path: string) {
-  return path.replace('-cn', '').replace(/\/$/, '');
+  return path.replace('-ko', '').replace(/\/$/, '');
 }
 
 export default function useLocation() {
@@ -13,11 +13,11 @@ export default function useLocation() {
   const [, localeType] = useLocale();
 
   const getLink = React.useCallback(
-    (path: string, hash?: string | { cn: string; en: string }) => {
+    (path: string, hash?: string | { ko: string }) => {
       let pathname = clearPath(path);
 
-      if (localeType === 'cn') {
-        pathname = `${pathname}-cn`;
+      if (localeType === 'ko') {
+        pathname = `${pathname}-ko`;
       }
 
       if (search) {

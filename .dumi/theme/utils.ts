@@ -117,7 +117,7 @@ export function getMenuItems(
 }
 
 export function isZhCN(pathname: string) {
-  return /-cn\/?$/.test(pathname);
+  return /-ko\/?$/.test(pathname);
 }
 
 export function getLocalizedPathname(
@@ -125,6 +125,7 @@ export function getLocalizedPathname(
   zhCN?: boolean,
   search?: string,
   hash?: {
+    koKR?: string;
     zhCN?: string;
     enUS?: string;
   },
@@ -133,18 +134,18 @@ export function getLocalizedPathname(
   let fullPath: string;
   if (!zhCN) {
     // to enUS
-    fullPath = /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+    fullPath = /\/?index-ko/.test(pathname) ? '/' : pathname.replace('-ko', '');
   } else if (pathname === '/') {
-    fullPath = '/index-cn';
+    fullPath = '/index-ko';
   } else if (pathname.endsWith('/')) {
-    fullPath = pathname.replace(/\/$/, '-cn/');
+    fullPath = pathname.replace(/\/$/, '-ko/');
   } else {
-    fullPath = `${pathname}-cn`;
-    fullPath = fullPath.replace(/(-cn)+/, '-cn');
+    fullPath = `${pathname}-ko`;
+    fullPath = fullPath.replace(/(-ko)+/, '-ko');
   }
 
   if (hash) {
-    const localHash = hash[zhCN ? 'zhCN' : 'enUS'];
+    const localHash = hash[zhCN ? 'koKR' : 'koKR'];
     fullPath += `#${localHash}`;
   }
 

@@ -34,6 +34,12 @@ const locales = {
     designTitle: 'Design and framework',
     designDesc: 'Supporting ecology, allowing you to quickly build website applications',
   },
+  ko: {
+    assetsTitle: 'Rich components',
+    assetsDesc: 'Practical components to meet your needs, flexible customization and expansion',
+    designTitle: 'Design and framework',
+    designDesc: 'Supporting ecology, allowing you to quickly build website applications',
+  },
 };
 
 const Homepage: React.FC = () => {

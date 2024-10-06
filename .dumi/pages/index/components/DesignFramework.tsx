@@ -61,6 +61,22 @@ const locales = {
     kitchen: 'Kitchen',
     kitchenDesc: 'Sketch Tool set for designers',
   },
+  ko: {
+    values: 'Design values',
+    valuesDesc: 'Certainty, Meaningfulness, Growth, Naturalness',
+    guide: 'Design guide',
+    guideDesc: 'Global style and design pattern',
+    lib: 'Components Libraries',
+    libDesc: 'Ant Design of React / Angular / Vue',
+
+    // Secondary
+    mobile: 'Ant Design Mobile',
+    mobileDesc: 'Mobile UI component library',
+    antv: 'AntV',
+    antvDesc: 'New generation of data visualization solutions',
+    kitchen: 'Kitchen',
+    kitchenDesc: 'Sketch Tool set for designers',
+  },
 };
 
 const useStyle = () => {

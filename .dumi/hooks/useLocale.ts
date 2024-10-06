@@ -4,8 +4,7 @@ export interface LocaleMap<
   K extends PropertyKey = PropertyKey,
   V extends string | ((...params: any[]) => string) = string,
 > {
-  cn: Record<K, V>;
-  en: Record<K, V>;
+  ko: Record<K, V>;
 }
 
 const useLocale = <
@@ -13,9 +12,9 @@ const useLocale = <
   V extends string | ((...params: any[]) => string) = string,
 >(
   localeMap?: LocaleMap<K, V>,
-): [Record<K, V>, 'cn' | 'en'] => {
+): [Record<K, V>, 'ko'] => {
   const { id } = useDumiLocale();
-  const localeType = id === 'zh-CN' ? 'cn' : 'en';
+  const localeType = id === 'ko-KR' ? 'ko' : 'ko';
   return [localeMap?.[localeType]!, localeType] as const;
 };
 
