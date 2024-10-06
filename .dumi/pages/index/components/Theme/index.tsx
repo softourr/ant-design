@@ -88,6 +88,23 @@ const locales = {
     toDef: 'More',
     toUse: 'Apply',
   },
+  ko: {
+    themeTitle: 'Flexible theme customization',
+    themeDesc: 'Ant Design 5.0 enable extendable algorithm, make custom theme easier',
+
+    customizeTheme: 'Customize Theme',
+    myTheme: 'My Theme',
+    titlePrimaryColor: 'Primary Color',
+    titleBorderRadius: 'Border Radius',
+    titleCompact: 'Compact',
+    titleTheme: 'Theme',
+    default: 'Default',
+    compact: 'Compact',
+    light: 'Light',
+    dark: 'Dark',
+    toDef: 'More',
+    toUse: 'Apply',
+  },
 };
 
 // ============================= Style =============================

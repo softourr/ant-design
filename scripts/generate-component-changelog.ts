@@ -12,8 +12,6 @@ const componentNames = globSync(
   .map((filePath) => filePath.replace(/\\/g, '/').match(/components\/([^/]*)\//)![1])
   .filter((name) => name !== 'overview');
 
-console.log(componentNames);
-
 const camelComponentNames = componentNames.map((componentName) =>
   componentName
     .split('-')

@@ -30,6 +30,11 @@ const locales = {
     description:
       'An enterprise-class UI design language and React UI library with a set of high-quality React components, one of best React UI library for enterprises',
   },
+  ko: {
+    title: "Ant Design - The world's second most popular React UI framework",
+    description:
+      'An enterprise-class UI design language and React UI library with a set of high-quality React components, one of best React UI library for enterprises',
+  },
 };
 
 const DocLayout: React.FC = () => {
@@ -42,7 +47,7 @@ const DocLayout: React.FC = () => {
   const { loading } = useSiteData();
 
   useLayoutEffect(() => {
-    if (lang === 'cn') {
+    if (lang === 'ko') {
       dayjs.locale('zh-cn');
     } else {
       dayjs.locale('en');
@@ -95,7 +100,7 @@ const DocLayout: React.FC = () => {
     <>
       <Helmet encodeSpecialCharacters={false}>
         <html
-          lang={lang === 'cn' ? 'zh-CN' : lang}
+          lang={lang === 'ko' ? 'ko-KR' : lang}
           data-direction={direction}
           className={classNames({ rtl: direction === 'rtl' })}
         />
@@ -110,7 +115,7 @@ const DocLayout: React.FC = () => {
           content="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
         />
       </Helmet>
-      <ConfigProvider direction={direction} locale={lang === 'cn' ? zhCN : undefined}>
+      <ConfigProvider direction={direction} locale={lang === 'ko' ? zhCN : undefined}>
         <GlobalStyles />
         <Header />
         {content}

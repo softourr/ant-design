@@ -30,6 +30,13 @@ const locales = {
     comic: 'Blossom',
     v4: 'V4 Theme',
   },
+  ko: {
+    default: 'Default',
+    dark: 'Dark',
+    lark: 'Document',
+    comic: 'Blossom',
+    v4: 'V4 Theme',
+  },
 };
 
 const useStyle = createStyles(({ token, css }) => ({

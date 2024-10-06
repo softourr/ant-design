@@ -26,6 +26,13 @@ const locales = {
     resources: 'Resources',
     blog: 'Blog',
   },
+  ko: {
+    design: 'Design',
+    development: 'Development',
+    components: 'Components',
+    resources: 'Resources',
+    blog: 'Blog',
+  },
 };
 
 // ============================= Style =============================

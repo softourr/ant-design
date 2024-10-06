@@ -68,6 +68,27 @@ const locales = {
     hello: 'Hello, Ant Design!',
     release: 'Ant Design 5.0 is released!',
   },
+  ko: {
+    range: 'Set Range',
+    text: 'Ant Design 5.0 use CSS-in-JS technology to provide dynamic & mix theme ability. And which use component level CSS-in-JS solution get your application a better performance.',
+    infoText: 'Info Text',
+    dropdown: 'Dropdown',
+    finished: 'Finished',
+    inProgress: 'In Progress',
+    waiting: 'Waiting',
+    option: 'Option',
+    apple: 'Apple',
+    banana: 'Banana',
+    orange: 'Orange',
+    watermelon: 'Watermelon',
+    primary: 'Primary',
+    danger: 'Danger',
+    default: 'Default',
+    dashed: 'Dashed',
+    icon: 'Icon',
+    hello: 'Hello, Ant Design!',
+    release: 'Ant Design 5.0 is released!',
+  },
 };
 
 const useStyle = createStyles(({ token, css }) => {

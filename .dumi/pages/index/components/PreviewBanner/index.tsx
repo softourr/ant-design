@@ -24,6 +24,12 @@ const locales = {
     start: 'Getting Started',
     designLanguage: 'Design Language',
   },
+  ko: {
+    slogan:
+      'Help designers/developers building beautiful products more flexible and working with happiness',
+    start: 'Getting Started',
+    designLanguage: 'Design Language',
+  },
 };
 
 const useStyle = () => {

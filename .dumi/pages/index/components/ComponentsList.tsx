@@ -59,6 +59,19 @@ const locales = {
     taskFailed: 'Task Failed',
     tour: 'A quick guide for new come user about how to use app.',
   },
+  ko: {
+    yesterday: 'Yesterday',
+    lastWeek: 'Last Week',
+    lastMonth: 'Last Month',
+    lastYear: 'Last Year',
+    new: 'New',
+    update: 'Update',
+    sampleContent: SAMPLE_CONTENT_EN,
+    inProgress: 'In Progress',
+    success: 'Success',
+    taskFailed: 'Task Failed',
+    tour: 'A quick guide for new come user about how to use app.',
+  },
 };
 
 const useStyle = () => {
