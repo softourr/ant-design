@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { createStyles } from 'antd-style';
-import { useLocation } from 'dumi';
 
 import Link from '../../common/Link';
-import * as utils from '../../utils';
 
 const useStyle = createStyles(({ token, css }) => {
   const { headerHeight, colorTextHeading, fontFamily, mobileMaxWidth } = token;
@@ -54,12 +52,11 @@ export interface LogoProps {
 
 const logoSrc = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';
 
-const Logo: React.FC<LogoProps> = ({ isZhCN }) => {
-  const { search } = useLocation();
+const Logo: React.FC<LogoProps> = () => {
   const { styles } = useStyle();
   return (
     <h1>
-      <Link to={utils.getLocalizedPathname('/', isZhCN, search)} className={styles.logo}>
+      <Link to="/" className={styles.logo}>
         <img src={logoSrc} draggable={false} alt="logo" />
         <span className={styles.title}>Ant Design</span>
       </Link>
