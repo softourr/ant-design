@@ -5,7 +5,7 @@ import 'dayjs/locale/zh-cn';
 
 import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import ConfigProvider from 'antd/es/config-provider';
-import zhCN from 'antd/es/locale/zh_CN';
+import koKR from 'antd/es/locale/ko_KR';
 import { Helmet, useOutlet, useSiteData } from 'dumi';
 
 import useLocale from '../../../hooks/useLocale';
@@ -100,7 +100,7 @@ const DocLayout: React.FC = () => {
     <>
       <Helmet encodeSpecialCharacters={false}>
         <html
-          lang={lang === 'ko' ? 'ko-KR' : lang}
+          lang="ko-KR"
           data-direction={direction}
           className={classNames({ rtl: direction === 'rtl' })}
         />
@@ -115,7 +115,7 @@ const DocLayout: React.FC = () => {
           content="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
         />
       </Helmet>
-      <ConfigProvider direction={direction} locale={lang === 'ko' ? zhCN : undefined}>
+      <ConfigProvider direction={direction} locale={koKR}>
         <GlobalStyles />
         <Header />
         {content}
