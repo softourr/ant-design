@@ -47,7 +47,8 @@ class AntdReactTechStack extends ReactTechStack {
 
     if (opts.type === 'external') {
       // try to find md file with the same name as the demo tsx file
-      const locale = opts.mdAbsPath.match(/index\.([a-z-]+)\.md$/i)?.[1];
+      // const locale = opts.mdAbsPath.match(/index\.([a-z-]+)\.md$/i)?.[1];
+
       const mdPath = opts.fileAbsPath!.replace(/\.\w+$/, '.md');
       const md = fs.existsSync(mdPath) ? fs.readFileSync(mdPath, 'utf-8') : '';
 
@@ -115,7 +116,7 @@ class AntdReactTechStack extends ReactTechStack {
         // Last block
         fillBlock(blockName, cacheList);
 
-        props.description = blocks[locale];
+        props.description = blocks['ko-KR'];
         props.style = blocks.style;
       }
     }
