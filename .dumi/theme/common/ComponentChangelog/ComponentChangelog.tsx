@@ -87,6 +87,13 @@ const locales = {
     empty: 'Nothing update',
     bugList: 'Bug Versions',
   },
+  ko: {
+    full: 'Full Changelog',
+    changelog: 'Changelog',
+    loading: 'loading...',
+    empty: 'Nothing update',
+    bugList: 'Bug Versions',
+  },
 };
 
 const ParseChangelog: React.FC<{ changelog: string; refs: string[]; styles: any }> = (props) => {
@@ -141,10 +148,10 @@ interface ChangelogInfo {
 }
 
 const useChangelog = (componentPath: string): ChangelogInfo[] => {
-  const logFileName = `components-changelog-ko.json`;
+  const logFileName = `components-changelog.json`;
 
   const data = useFetch({
-    key: `component-changelog-ko`,
+    key: `component-changelog`,
     request: () => import(`../../../preset/${logFileName}`),
   });
   return React.useMemo(() => {
@@ -158,7 +165,7 @@ const useChangelog = (componentPath: string): ChangelogInfo[] => {
 
 const ComponentChangelog: React.FC<ComponentChangelogProps> = (props) => {
   const { pathname = '' } = props;
-  const [locale, lang] = useLocale(locales);
+  const [locale] = useLocale(locales);
   const [show, setShow] = React.useState(false);
 
   const { styles } = useStyle();
@@ -240,7 +247,7 @@ const ComponentChangelog: React.FC<ComponentChangelogProps> = (props) => {
         className={styles.drawerContent}
         title={locale.changelog}
         extra={
-          <Link className={styles.extraLink} to={`/changelog${lang === 'cn' ? '-cn' : ''}`}>
+          <Link className={styles.extraLink} to={`/changelog`}>
             {locale.full}
           </Link>
         }
