@@ -7,7 +7,7 @@ yuque_url: https://www.yuque.com/ant-design/ant-design/gyacdbtixle9bbm4
 juejin_url: https://juejin.cn/post/7322352551088603163
 ---
 
-기존의 JS + CSS 웹사이트에서는 SSR은 주로 첫 렌더링의 Hydration 문제만 신경 쓰면 됩니다. 하지만 CSS-in-JS 기술이 도입되면서, 개발자는 첫 렌더링의 정확성을 보장하기 위해 HTML에 스타일을 어떻게 내보낼지 따로 고민해야 합니다. 우리는 여러 가지 구현 방법을 제공하며, 여기에서는 그 아이디어를 논의하고자 합니다. 더 보완된 문서나 예시가 필요하다면 [Customize Theme](/docs/react/customize-theme-cn) 를 참고하세요.
+기존의 JS + CSS 웹사이트에서는 SSR은 주로 첫 렌더링의 Hydration 문제만 신경 쓰면 됩니다. 하지만 CSS-in-JS 기술이 도입되면서, 개발자는 첫 렌더링의 정확성을 보장하기 위해 HTML에 스타일을 어떻게 내보낼지 따로 고민해야 합니다. 우리는 여러 가지 구현 방법을 제공하며, 여기에서는 그 아이디어를 논의하고자 합니다. 더 보완된 문서나 예시가 필요하다면 [Customize Theme](/docs/react/customize-theme) 를 참고하세요.
 
 ### 인라인 스타일
 
