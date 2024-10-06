@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
   const { getLink } = location;
 
   const getColumns = React.useMemo<FooterColumn[]>(() => {
-    const isZhCN = lang === 'cn';
+    const isZhCN = lang === 'ko';
 
     const col1 = {
       title: <FormattedMessage id="app.footer.resources" />,
@@ -246,8 +246,9 @@ const Footer: React.FC = () => {
         icon: <UsergroupAddOutlined />,
         title: <FormattedMessage id="app.footer.work_with_us" />,
         url: getLink('/docs/resources', {
-          cn: '加入我们',
-          en: 'JoinUs',
+          // cn: '加入我们',
+          // en: 'JoinUs',
+          ko: 'JoinUs',
         }),
         LinkComponent: Link,
       } as unknown as (typeof col2)['items'][number]);

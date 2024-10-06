@@ -363,7 +363,7 @@ function rgbToColorMatrix(color: string) {
 const Theme: React.FC = () => {
   const { styles } = useStyle();
   const [locale, lang] = useLocale(locales);
-  const isZhCN = lang === 'cn';
+  const isZhCN = lang === 'ko';
   const { search } = useLocation();
 
   const [themeData, setThemeData] = React.useState<ThemeData>(ThemeDefault);
