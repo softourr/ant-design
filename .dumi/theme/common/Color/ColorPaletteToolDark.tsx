@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Col, ColorPicker, Row } from 'antd';
-import { FormattedMessage } from 'dumi';
 import type { Color } from 'antd/es/color-picker';
+import { FormattedMessage } from 'dumi';
 
 import useLocale from '../../../hooks/useLocale';
 import ColorPatterns from './ColorPatterns';
@@ -15,6 +15,12 @@ const locales = {
     brightness: (b: string) => `亮度建议不低于${primaryMinBrightness}（现在${b}）`,
   },
   en: {
+    saturation: (s: string) =>
+      `Saturation is recommended not to be lower than ${primaryMinSaturation}（currently${s}）`,
+    brightness: (b: string) =>
+      `Brightness is recommended not to be lower than ${primaryMinBrightness}（currently${b}）`,
+  },
+  ko: {
     saturation: (s: string) =>
       `Saturation is recommended not to be lower than ${primaryMinSaturation}（currently${s}）`,
     brightness: (b: string) =>

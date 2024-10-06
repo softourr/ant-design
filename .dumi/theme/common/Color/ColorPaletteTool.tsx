@@ -20,6 +20,12 @@ const locales = {
     brightness: (b: string) =>
       `Brightness is recommended not to be lower than ${primaryMinBrightness} (currently ${b})`,
   },
+  ko: {
+    saturation: (s: string) =>
+      `Saturation is recommended not to be lower than ${primaryMinSaturation} (currently ${s})`,
+    brightness: (b: string) =>
+      `Brightness is recommended not to be lower than ${primaryMinBrightness} (currently ${b})`,
+  },
 };
 
 const ColorPaletteTool: React.FC = () => {

@@ -19,6 +19,13 @@ const locales = {
     body: 'Body element',
     footer: 'Footer element',
   },
+  ko: {
+    mask: 'Mask element',
+    content: 'Drawer container element',
+    header: 'Header element',
+    body: 'Body element',
+    footer: 'Footer element',
+  },
 };
 
 const App: React.FC = () => {

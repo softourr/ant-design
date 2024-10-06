@@ -17,6 +17,12 @@ const locales = {
     rail: 'Background rail element',
     handle: 'Grab handle element',
   },
+  ko: {
+    track: 'The selection bar between points and points under the range selection',
+    tracks: 'The entire range selection bar under the range selection',
+    rail: 'Background rail element',
+    handle: 'Grab handle element',
+  },
 };
 
 const App: React.FC = () => {

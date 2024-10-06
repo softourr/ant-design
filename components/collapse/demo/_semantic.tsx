@@ -14,6 +14,10 @@ const locales = {
     header: 'Header element',
     body: 'Body element',
   },
+  ko: {
+    header: 'Header element',
+    body: 'Body element',
+  },
 };
 
 const BlockCollapse: React.FC = (props) => {

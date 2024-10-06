@@ -102,6 +102,13 @@ const locales = {
     junjin: 'Ant Design Open Source Column',
     buttonText: 'Go to discuss',
   },
+  ko: {
+    bigTitle: 'Articles are included in the column:',
+    zhiHu: 'A UI design system',
+    yuQue: 'Ant Design official column',
+    junjin: 'Ant Design Open Source Column',
+    buttonText: 'Go to discuss',
+  },
 };
 
 interface Props {

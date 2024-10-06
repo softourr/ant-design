@@ -18,6 +18,12 @@ const locales = {
     whereDocTitle: 'Compatible adjustment (Please use modern browser to visit)',
     whereDocUrl: '/docs/react/customize-theme#compatible-adjustment',
   },
+  ko: {
+    whereNotSupport:
+      'Your browser not support modern CSS Selector. Please use modern browser to view (e.g. Chrome, Firefox, etc). If you want to compatible style with legacy browser, please refer to the configuration document:',
+    whereDocTitle: 'Compatible adjustment (Please use modern browser to visit)',
+    whereDocUrl: '/docs/react/customize-theme#compatible-adjustment',
+  },
 };
 
 const useStyle = createStyles(({ css, token }) => ({

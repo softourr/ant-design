@@ -18,6 +18,12 @@ const locales = {
     suffix: 'suffix element',
     count: 'count element',
   },
+  ko: {
+    input: 'input element',
+    prefix: 'prefix element',
+    suffix: 'suffix element',
+    count: 'count element',
+  },
 };
 
 const App: React.FC = () => {

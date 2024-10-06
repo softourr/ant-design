@@ -22,6 +22,14 @@ const locales = {
     body: 'Body element',
     footer: 'Footer element',
   },
+  ko: {
+    mask: 'Mask element',
+    wrapper: 'Wrapper element. Used for motion container',
+    content: 'Modal container element',
+    header: 'Header element',
+    body: 'Body element',
+    footer: 'Footer element',
+  },
 };
 
 const BlockModal = (props: ModalProps) => {

@@ -13,6 +13,10 @@ const locales = {
     textarea: 'textarea element',
     count: 'count element',
   },
+  ko: {
+    textarea: 'textarea element',
+    count: 'count element',
+  },
 };
 
 const App: React.FC = () => {

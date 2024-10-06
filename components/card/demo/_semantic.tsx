@@ -1,10 +1,9 @@
 import React from 'react';
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar, Card } from 'antd';
 
 import SemanticPreview from '../../../.dumi/components/SemanticPreview';
 import useLocale from '../../../.dumi/hooks/useLocale';
-
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
 
 const { Meta } = Card;
 
@@ -18,6 +17,14 @@ const locales = {
     cover: '设置标题封面',
   },
   en: {
+    header: 'set `header` of card',
+    body: 'set `body` of card',
+    extra: 'set `extra` of card',
+    title: 'set `title` of card',
+    actions: 'set `actions` of card',
+    cover: 'set `cover` of card',
+  },
+  ko: {
     header: 'set `header` of card',
     body: 'set `body` of card',
     extra: 'set `extra` of card',

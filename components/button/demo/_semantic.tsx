@@ -12,6 +12,9 @@ const locales = {
   en: {
     icon: 'Icon element',
   },
+  ko: {
+    icon: 'Icon element',
+  },
 };
 
 const App: React.FC = () => {

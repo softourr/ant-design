@@ -11,6 +11,9 @@ const locales = {
   en: {
     item: 'Wrapped item element',
   },
+  ko: {
+    item: 'Wrapped item element',
+  },
 };
 
 const App: React.FC = () => {
