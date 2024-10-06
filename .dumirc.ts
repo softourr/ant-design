@@ -1,7 +1,7 @@
+import os from 'node:os';
 import path from 'path';
 import { defineConfig } from 'dumi';
 import * as fs from 'fs-extra';
-import os from 'node:os';
 
 import rehypeAntd from './.dumi/rehypeAntd';
 import remarkAntd from './.dumi/remarkAntd';
@@ -121,7 +121,10 @@ export default defineConfig({
   ],
   headScripts: [
     `
-    (function () {
+    /* 
+    /* 
+      index-cn 혹은 index-en 으로 변경되는것을 주석처리
+      (function () {
       function isLocalStorageNameSupported() {
         const testKey = 'test';
         const storage = window.localStorage;
@@ -134,6 +137,7 @@ export default defineConfig({
         }
       }
       // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      
       const pathname = location.pathname;
 
       function isZhCN(pathname) {
@@ -174,7 +178,7 @@ export default defineConfig({
         }
       }
       document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
-    })();
+    })(); */
     `,
   ],
   scripts: [

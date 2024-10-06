@@ -35,6 +35,12 @@ const locales = {
     more: '',
     link: '',
   },
+  ko: {
+    message: '',
+    shortMessage: '',
+    more: '',
+    link: '',
+  },
 };
 
 const useStyle = createStyles(({ token, css }) => {
@@ -171,7 +177,7 @@ const Header: React.FC = () => {
     useContext<SiteContextProps>(SiteContext);
   const pingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
-  const { pathname, search } = location;
+  const { pathname } = location; // 기존 {pathname, search}
 
   const { styles } = useStyle();
 
@@ -230,12 +236,14 @@ const Header: React.FC = () => {
     }
   }, []);
 
+  /* 
+  다국어 변경 필요없어져서 주석 처리
   const onLangChange = useCallback(() => {
     const currentProtocol = `${window.location.protocol}//`;
     const currentHref = window.location.href.slice(currentProtocol.length);
 
     if (utils.isLocalStorageNameSupported()) {
-      localStorage.setItem('locale', utils.isZhCN(pathname) ? 'en-US' : 'zh-CN');
+      localStorage.setItem('locale', utils.isZhCN(pathname) ? 'ko-KR' : 'ko-KR');
     }
     window.location.href =
       currentProtocol +
@@ -243,7 +251,8 @@ const Header: React.FC = () => {
         window.location.pathname,
         utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname), search).pathname,
       );
-  }, [location]);
+  }, [location]); 
+  */
 
   const nextDirectionText = useMemo<string>(
     () => (direction !== 'rtl' ? 'RTL' : 'LTR'),
@@ -265,8 +274,8 @@ const Header: React.FC = () => {
     label: version,
   }));
 
-  const isHome = ['', 'index', 'index-cn'].includes(pathname);
-  const isZhCN = lang === 'cn';
+  const isHome = ['', 'index', 'index-ko'].includes(pathname);
+  const isZhCN = lang === 'ko';
   const isRTL = direction === 'rtl';
   let responsive: null | 'narrow' | 'crowded' = null;
   if (windowWidth < RESPONSIVE_XS) {
@@ -291,7 +300,7 @@ const Header: React.FC = () => {
       responsive={responsive}
       isMobile={isMobile}
       directionText={nextDirectionText}
-      onLangChange={onLangChange}
+      onLangChange={() => {}}
       onDirectionChange={onDirectionChange}
     />
   );
@@ -311,12 +320,12 @@ const Header: React.FC = () => {
     />,
     <SwitchBtn
       key="lang"
-      onClick={onLangChange}
+      onClick={() => {}}
       value={utils.isZhCN(pathname) ? 1 : 2}
-      label1="中"
-      label2="En"
-      tooltip1="中文 / English"
-      tooltip2="English / 中文"
+      label1="Ko"
+      label2="Ko"
+      tooltip1="한국어"
+      tooltip2="한국어"
     />,
     <SwitchBtn
       key="direction"
