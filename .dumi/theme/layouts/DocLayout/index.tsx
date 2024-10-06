@@ -48,7 +48,7 @@ const DocLayout: React.FC = () => {
 
   useLayoutEffect(() => {
     if (lang === 'ko') {
-      dayjs.locale('zh-cn');
+      dayjs.locale('ko');
     } else {
       dayjs.locale('en');
     }
