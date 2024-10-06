@@ -193,15 +193,15 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       key: 'docs/resources',
     },
     isZhCN
-      ? {
+      ? null
+      : {
           key: 'mirror',
           label: (
             <a href="https://ant-design.antgroup.com" target="_blank" rel="noreferrer">
               国内镜像
             </a>
           ),
-        }
-      : null,
+        },
     ...(additional ?? []),
   ].filter(Boolean);
 
