@@ -4,7 +4,7 @@ import { useLocation as useDumiLocation } from 'dumi';
 import useLocale from './useLocale';
 
 function clearPath(path: string) {
-  return path.replace('-ko', '').replace(/\/$/, '');
+  return path.replace('', '').replace(/\/$/, '');
 }
 
 export default function useLocation() {
@@ -17,7 +17,7 @@ export default function useLocation() {
       let pathname = clearPath(path);
 
       if (localeType === 'ko') {
-        pathname = `${pathname}-ko`;
+        pathname = `${pathname}`;
       }
 
       if (search) {

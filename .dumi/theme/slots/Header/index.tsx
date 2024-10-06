@@ -274,7 +274,7 @@ const Header: React.FC = () => {
     label: version,
   }));
 
-  const isHome = ['', 'index', 'index-ko'].includes(pathname);
+  const isHome = ['', 'index'].includes(pathname);
   const isZhCN = lang === 'ko';
   const isRTL = direction === 'rtl';
   let responsive: null | 'narrow' | 'crowded' = null;
