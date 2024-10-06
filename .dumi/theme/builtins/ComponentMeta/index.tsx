@@ -27,6 +27,15 @@ const locales = {
     edit: 'Edit this page',
     version: 'Version',
   },
+  ko: {
+    import: 'Import',
+    copy: 'Copy',
+    copied: 'Copied',
+    source: 'Source',
+    docs: 'Docs',
+    edit: 'Edit this page',
+    version: 'Version',
+  },
 };
 
 const branchUrl = 'https://github.com/ant-design/ant-design/edit/master/';
@@ -83,7 +92,7 @@ const ComponentMeta: React.FC<ComponentMetaProps> = (props) => {
   const { component, source, filename, version } = props;
   const { token } = theme.useToken();
   const [locale, lang] = useLocale(locales);
-  const isZhCN = lang === 'cn';
+  const isZhCN = lang === 'ko';
   const { styles } = useStyle();
 
   // ========================= Copy =========================

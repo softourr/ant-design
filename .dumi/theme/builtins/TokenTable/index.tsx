@@ -11,7 +11,7 @@ import ColorChunk from '../ColorChunk';
 
 type TokenTableProps = {
   type: 'seed' | 'map' | 'alias';
-  lang: 'zh' | 'en';
+  lang: 'ko';
 };
 
 export type TokenData = {
@@ -31,6 +31,12 @@ const locales = {
     value: '默认值',
   },
   en: {
+    token: 'Token Name',
+    description: 'Description',
+    type: 'Type',
+    value: 'Default Value',
+  },
+  ko: {
     token: 'Token Name',
     description: 'Description',
     type: 'Type',
@@ -97,7 +103,7 @@ const TokenTable: FC<TokenTableProps> = ({ type }) => {
         .filter(([, meta]) => meta.source === type)
         .map(([token, meta]) => ({
           name: token,
-          desc: lang === 'cn' ? meta.desc : meta.descEn,
+          desc: lang === 'ko' ? meta.desc : meta.descEn,
           type: meta.type,
           value: defaultToken[token],
         })),

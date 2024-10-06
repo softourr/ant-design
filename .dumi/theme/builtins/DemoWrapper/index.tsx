@@ -24,6 +24,10 @@ const locales = {
     enableCssVar: 'Enable CSS Var',
     disableCssVar: 'Disable CSS Var',
   },
+  ko: {
+    enableCssVar: 'Enable CSS Var',
+    disableCssVar: 'Disable CSS Var',
+  },
 };
 
 const DemoWrapper: typeof DumiDemoGrid = ({ items }) => {

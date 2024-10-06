@@ -94,9 +94,9 @@ const ArticleList: React.FC<ArticleListProps> = ({ name, data = [], authors = []
 
 const Articles: React.FC<{ data: Partial<SiteData> }> = ({ data }) => {
   const [, lang] = useLocale();
-  const isZhCN = lang === 'cn';
+  const isZhCN = lang === 'ko';
 
-  const { articles = { cn: [], en: [] }, authors = [] } = data;
+  const { articles = { ko: [] }, authors = [] } = data;
 
   // ========================== Data ==========================
   const mergedData = React.useMemo(() => {

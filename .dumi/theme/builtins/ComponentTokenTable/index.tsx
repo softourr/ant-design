@@ -51,6 +51,19 @@ const locales = {
     customizeTokenLink: '/docs/react/customize-theme#customize-design-token',
     customizeComponentTokenLink: 'docs/react/customize-theme#customize-component-token',
   },
+  ko: {
+    token: 'Token Name',
+    description: 'Description',
+    type: 'Type',
+    value: 'Default Value',
+    componentToken: 'Component Token',
+    globalToken: 'Global Token',
+    componentComment: 'here is your component tokens',
+    globalComment: 'here is your global tokens',
+    help: 'How to use?',
+    customizeTokenLink: '/docs/react/customize-theme#customize-design-token',
+    customizeComponentTokenLink: 'docs/react/customize-theme#customize-component-token',
+  },
 };
 
 const useStyle = createStyles(({ token }) => ({
@@ -120,7 +133,7 @@ const SubTokenTable: React.FC<SubTokenTableProps> = (props) => {
 
       return {
         name,
-        desc: lang === 'cn' ? meta.desc : meta.descEn,
+        desc: lang === 'ko' ? meta.desc : meta.descEn,
         type: meta.type,
         value: component ? tokenData[component].component[name] : defaultToken[name],
       };

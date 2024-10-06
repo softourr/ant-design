@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-import { Button, App, Skeleton } from 'antd';
+import { App, Button, Skeleton } from 'antd';
 import { enUS, zhCN } from 'antd-token-previewer';
 import type { ThemeConfig } from 'antd/es/config-provider/context';
 import { Helmet } from 'dumi';
@@ -21,6 +21,17 @@ const locales = {
     initialEditor: '正在初始化编辑器...',
   },
   en: {
+    title: 'Theme Editor',
+    save: 'Save',
+    edit: 'Edit',
+    export: 'Export',
+    editModelTitle: 'edit Theme Config',
+    editJsonContentTypeError: 'The theme of the JSON format is incorrect',
+    editSuccessfully: 'Edited successfully',
+    saveSuccessfully: 'Saved successfully',
+    initialEditor: 'Initializing Editor...',
+  },
+  ko: {
     title: 'Theme Editor',
     save: 'Save',
     edit: 'Edit',
@@ -69,7 +80,7 @@ const CustomTheme: React.FC = () => {
           onThemeChange={(newTheme) => {
             setTheme(newTheme.config);
           }}
-          locale={lang === 'cn' ? zhCN : enUS}
+          locale={lang === 'ko' ? zhCN : enUS}
           actions={
             <Button type="primary" onClick={handleSave}>
               {locale.save}

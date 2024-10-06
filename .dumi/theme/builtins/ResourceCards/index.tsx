@@ -57,6 +57,11 @@ const locales = {
     thirdPart: 'Third Party',
     thirdPartDesc: 'Unofficial product, please take care confirm availability',
   },
+  ko: {
+    official: 'Official',
+    thirdPart: 'Third Party',
+    thirdPartDesc: 'Unofficial product, please take care confirm availability',
+  },
 };
 
 export type ResourceCardProps = {

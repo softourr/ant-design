@@ -29,10 +29,10 @@ const LocaleLink: React.FC<React.PropsWithChildren<LocaleLinkProps>> = ({
       let path = cells[1].replace(/\/$/, '');
       const hash = cells[2] || '';
 
-      if (localeType === 'cn' && !path.endsWith('-cn')) {
-        path = `${path}-cn`;
-      } else if (localeType === 'en' && path.endsWith('-cn')) {
-        path = path.replace(/-cn$/, '');
+      if (localeType === 'ko' && !path.endsWith('-ko')) {
+        path = `${path}-ko`;
+      } else if (localeType === 'ko' && path.endsWith('-ko')) {
+        path = path.replace(/-ko$/, '');
       }
 
       return `${path}${hash}`;

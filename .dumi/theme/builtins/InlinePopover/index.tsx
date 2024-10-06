@@ -11,6 +11,9 @@ const locales = {
   en: {
     tip: 'Preview',
   },
+  ko: {
+    tip: 'Preview',
+  },
 };
 
 export interface InlinePopoverProps {

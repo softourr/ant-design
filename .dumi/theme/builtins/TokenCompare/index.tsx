@@ -89,7 +89,7 @@ const TokenCompare: React.FC<TokenCompareProps> = (props) => {
 
     return list.map((tokenName) => {
       const meta = tokenMeta.global[tokenName];
-      const name = lang === 'cn' ? meta.name : meta.nameEn;
+      const name = lang === 'ko' ? meta.name : meta.nameEn;
 
       return {
         name: name.replace('颜色', '').replace('色', '').replace('Color', '').trim(),
