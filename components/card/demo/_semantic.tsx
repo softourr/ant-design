@@ -3,7 +3,6 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import { Avatar, Card } from 'antd';
 
 import SemanticPreview from '../../../.dumi/components/SemanticPreview';
-import useLocale from '../../../.dumi/hooks/useLocale';
 
 const { Meta } = Card;
 
@@ -61,7 +60,7 @@ const BlockCard: React.FC<React.PropsWithChildren> = (props) => {
 };
 
 const App: React.FC = () => {
-  const [locale] = useLocale(locales);
+  const locale = locales.ko;
   return (
     <SemanticPreview
       semantics={[

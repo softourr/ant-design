@@ -46,7 +46,6 @@ const useStyle = createStyles(({ token, css }) => {
 });
 
 export interface LogoProps {
-  isZhCN: boolean;
   location: any;
 }
 

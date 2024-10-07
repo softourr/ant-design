@@ -6,7 +6,6 @@ import { getDesignToken } from 'antd-token-previewer';
 import tokenMeta from 'antd/es/version/token-meta.json';
 import tokenData from 'antd/es/version/token.json';
 
-import useLocale from '../../../hooks/useLocale';
 import { useColumns } from '../TokenTable';
 import type { TokenData } from '../TokenTable';
 
@@ -108,7 +107,6 @@ interface SubTokenTableProps {
 
 const SubTokenTable: React.FC<SubTokenTableProps> = (props) => {
   const { defaultOpen, tokens, title, helpText, helpLink, component, comment } = props;
-  const [, lang] = useLocale(locales);
   const token = useTheme();
   const columns = useColumns();
 
@@ -133,7 +131,7 @@ const SubTokenTable: React.FC<SubTokenTableProps> = (props) => {
 
       return {
         name,
-        desc: lang === 'ko' ? meta.desc : meta.descEn,
+        desc: meta.desc,
         type: meta.type,
         value: component ? tokenData[component].component[name] : defaultToken[name],
       };
@@ -211,7 +209,7 @@ export interface ComponentTokenTableProps {
 }
 
 const ComponentTokenTable: React.FC<ComponentTokenTableProps> = ({ component }) => {
-  const [locale] = useLocale(locales);
+  const locale = locales.ko;
   const [mergedGlobalTokens] = useMemo(() => {
     const globalTokenSet = new Set<string>();
 

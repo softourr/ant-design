@@ -7,7 +7,6 @@ import semver from 'semver';
 
 import deprecatedVersions from '../../../../BUG_VERSIONS.json';
 import useFetch from '../../../hooks/useFetch';
-import useLocale from '../../../hooks/useLocale';
 import Link from '../Link';
 
 interface MatchDeprecatedResult {
@@ -165,7 +164,7 @@ const useChangelog = (componentPath: string): ChangelogInfo[] => {
 
 const ComponentChangelog: React.FC<ComponentChangelogProps> = (props) => {
   const { pathname = '' } = props;
-  const [locale] = useLocale(locales);
+  const locale = locales.ko;
   const [show, setShow] = React.useState(false);
 
   const { styles } = useStyle();

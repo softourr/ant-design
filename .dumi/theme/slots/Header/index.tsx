@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import { useLocation, useSiteData } from 'dumi';
 import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
 
-import useLocale from '../../../hooks/useLocale';
 import DirectionIcon from '../../icons/DirectionIcon';
 import { ANT_DESIGN_NOT_SHOW_BANNER } from '../../layouts/GlobalLayout';
 import * as utils from '../../utils';
@@ -163,7 +162,7 @@ interface HeaderState {
 
 // ================================= Header =================================
 const Header: React.FC = () => {
-  const [locale, lang] = useLocale(locales);
+  const locale = locales.ko;
 
   const { pkg } = useSiteData();
 
@@ -275,7 +274,6 @@ const Header: React.FC = () => {
   }));
 
   const isHome = ['', 'index'].includes(pathname);
-  const isZhCN = lang === 'ko';
   const isRTL = direction === 'rtl';
   let responsive: null | 'narrow' | 'crowded' = null;
   if (windowWidth < RESPONSIVE_XS) {
@@ -289,7 +287,6 @@ const Header: React.FC = () => {
   });
 
   const sharedProps: SharedProps = {
-    isZhCN,
     isRTL,
   };
 
@@ -376,7 +373,7 @@ const Header: React.FC = () => {
           <MenuOutlined className="nav-phone-icon" />
         </Popover>
       )}
-      {isZhCN && bannerVisible && (
+      {bannerVisible && (
         <ConfigProvider
           theme={{
             token: {

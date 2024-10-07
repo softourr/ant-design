@@ -8,7 +8,6 @@ import ConfigProvider from 'antd/es/config-provider';
 import koKR from 'antd/es/locale/ko_KR';
 import { Helmet, useOutlet, useSiteData } from 'dumi';
 
-import useLocale from '../../../hooks/useLocale';
 import useLocation from '../../../hooks/useLocation';
 import GlobalStyles from '../../common/GlobalStyles';
 import Header from '../../slots/Header';
@@ -41,17 +40,13 @@ const DocLayout: React.FC = () => {
   const outlet = useOutlet();
   const location = useLocation();
   const { pathname, search, hash } = location;
-  const [locale, lang] = useLocale(locales);
+  const locale = locales.ko;
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const { direction } = useContext(SiteContext);
   const { loading } = useSiteData();
 
   useLayoutEffect(() => {
-    if (lang === 'ko') {
-      dayjs.locale('ko');
-    } else {
-      dayjs.locale('en');
-    }
+    dayjs.locale('ko');
   }, []);
 
   useEffect(() => {

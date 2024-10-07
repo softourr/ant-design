@@ -122,7 +122,6 @@ export function isZhCN(pathname: string) {
 
 export function getLocalizedPathname(
   path: string,
-  zhCN?: boolean,
   search?: string,
   hash?: {
     koKR?: string;
@@ -130,10 +129,7 @@ export function getLocalizedPathname(
 ) {
   const pathname = path.startsWith('/') ? path : `/${path}`;
   let fullPath: string;
-  if (!zhCN) {
-    // to enUS
-    fullPath = /\/?index/.test(pathname) ? '/' : pathname.replace('', '');
-  } else if (pathname === '/') {
+  if (pathname === '/') {
     fullPath = '/index';
   } else if (pathname.endsWith('/')) {
     fullPath = pathname.replace(/\/$/, '/');

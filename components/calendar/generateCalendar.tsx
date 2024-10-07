@@ -9,7 +9,6 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { AnyObject } from '../_util/type';
 import { devUseWarning } from '../_util/warning';
 import { ConfigContext } from '../config-provider';
-import { useLocale } from '../locale';
 import CalendarHeader from './Header';
 import enUS from './locale/en_US';
 import useStyle from './style';
@@ -230,9 +229,7 @@ const generateCalendar = <DateType extends AnyObject>(generateConfig: GenerateCo
       [monthFullCellRender, monthCellRender, cellRender, fullCellRender],
     );
 
-    const [contextLocale] = useLocale('Calendar', enUS);
-
-    const locale = { ...contextLocale, ...props.locale! };
+    const locale = { ...props.locale! };
 
     const mergedCellRender: RcBasePickerPanelProps['cellRender'] = (current, info) => {
       if (info.type === 'date') {
