@@ -9,8 +9,9 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { AnyObject } from '../_util/type';
 import { devUseWarning } from '../_util/warning';
 import { ConfigContext } from '../config-provider';
+import { useLocale } from '../locale';
 import CalendarHeader from './Header';
-import enUS from './locale/en_US';
+import koKR from './locale/ko_KR';
 import useStyle from './style';
 
 export type CalendarMode = 'year' | 'month';
@@ -30,7 +31,7 @@ export interface CalendarProps<DateType> {
   className?: string;
   rootClassName?: string;
   style?: React.CSSProperties;
-  locale?: typeof enUS;
+  locale?: typeof koKR;
   validRange?: [DateType, DateType];
   disabledDate?: (date: DateType) => boolean;
   /** @deprecated Please use fullCellRender instead. */
@@ -229,7 +230,8 @@ const generateCalendar = <DateType extends AnyObject>(generateConfig: GenerateCo
       [monthFullCellRender, monthCellRender, cellRender, fullCellRender],
     );
 
-    const locale = { ...props.locale! };
+    const [contextLocale] = useLocale('Calendar', koKR);
+    const locale = { ...contextLocale, ...props.locale! };
 
     const mergedCellRender: RcBasePickerPanelProps['cellRender'] = (current, info) => {
       if (info.type === 'date') {
