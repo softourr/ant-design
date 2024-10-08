@@ -9,13 +9,13 @@ zhihu_url: https://zhuanlan.zhihu.com/p/639266855
 
 # 서론
 
-Ant Design은 오픈 소스로 GitHub에서 호스팅되어 전 세계 개발자들과 소통하고 협업하기에 용이합니다. 또한 개발자들이 이슈와 풀 리퀘스트를 제출할 수 있도록 지원합니다. [GitHub Actions](https://github.com/features/actions)와 CI/CD 기능을 활용하면 코드 저장소를 효과적으로 관리하고 테스트, 배포 등의 작업을 자동화할 수 있습니다. 이 글에서는 Actions가 제공하는 기능에 대해 자세히 알아보겠습니다.
+Ant Design은 오픈 소스로 GitHub에서 호스팅되어 전 세계 개발자들과 소통하고 협업하기에 용이합니다. 또한 개발자들이 issue와 PR을 제출할 수 있도록 지원합니다. [GitHub Actions](https://github.com/features/actions)와 CI/CD 기능을 활용하면 코드 저장소를 효과적으로 관리하고 테스트, 배포 등의 작업을 자동화할 수 있습니다. 이 글에서는 Actions가 제공하는 기능에 대해 자세히 알아보겠습니다.
 
 ## GitHub Actions란 무엇인가요?
 
 GitHub Actions는 소프트웨어 개발 워크플로를 자동화하는 플랫폼입니다. 개발자는 `.github/workflows` 디렉토리에 YAML 형식의 파일을 추가하여 자신의 워크플로를 쉽게 사용자 정의하고 구성할 수 있습니다. 이를 통해 CI(지속적 통합)를 구현할 수 있습니다. [GitHub Actions를 이해](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)하면 워크플로 내의 다양한 개념들을 파악할 수 있습니다.
 
-- **Event(이벤트)**: 워크플로 실행을 발생시키는 요소로, 예를 들어 누군가 이슈를 생성하거나, 풀 리퀘스트를 만들거나, 브랜치에 코드를 푸시할 때 발생합니다.
+- **Event(이벤트)**: 워크플로 실행을 발생시키는 요소로, 예를 들어 누군가 issue를 생성하거나, PR을 만들거나, 브랜치에 코드를 푸시할 때 발생합니다.
 - **Job(작업)**: 워크플로는 기본적으로 병렬로 실행되는 하나 이상의 **Job**으로 구성됩니다. 그러나 **Job**을 순차적으로 실행하도록 설정할 수도 있습니다. 각 **Job**은 여러 단계를 포함할 수 있습니다.
 - **Step(단계)**: 특정 작업을 수행하는 단위입니다. 각 **Step**는 별도의 프로세스로 실행되며, 하나의 **Step**는 하나 이상의 명령어나 쉘 스크립트로 구성될 수 있습니다.
 
@@ -29,7 +29,7 @@ GitHub Actions는 소프트웨어 개발 워크플로를 자동화하는 플랫�
 
 Ant Design의 CI는 다음과 같은 영역을 다룹니다:
 
-- **커뮤니티 관리:** GitHub Actions를 이용하여 이슈와 PR(Pull Request)에 대한 품질 검사를 수행하고, 댓글과 레이블을 통해 협업 효율성을 높입니다.
+- **커뮤니티 관리:** GitHub Actions를 이용하여 issue와 PR에 대한 품질 검사를 수행하고, 댓글과 레이블을 통해 협업 효율성을 높입니다.
 - **코드 품질:** ESLint와 Prettier를 사용하여 코드 스타일을 일관되게 유지하고 코드 품질을 향상시킵니다.
 - **테스트:** Jest와 testing-library를 사용하여 단위 테스트와 스냅샷 테스트를 수행하여 코드의 정확성과 안정성을 보장합니다.
 - **빌드:** ES5와 ES6 모듈 형식의 파일을 빌드하여 다양한 환경에서 라이브러리를 사용할 수 있도록 합니다.
@@ -37,15 +37,15 @@ Ant Design의 CI는 다음과 같은 영역을 다룹니다:
 
 ## Issue
 
-이슈는 GitHub 플랫폼의 기능으로, 커뮤니티 피드백과 문제들을 수집하는 중앙 집중식 정보 허브 역할을 합니다. `Collaborator`는 레이블, 마일스톤, 담당자를 추가하여 작업과 프로젝트를 더 효율적으로 관리할 수 있습니다.
+Issue는 GitHub 플랫폼의 기능으로, 커뮤니티 피드백과 문제들을 수집하는 중앙 집중식 정보 허브 역할을 합니다. `Collaborator`는 레이블, 마일스톤, 담당자를 추가하여 작업과 프로젝트를 더 효율적으로 관리할 수 있습니다.
 
 ### Issue의 품질 보장
 
-이슈에 충분한 정보가 포함되어 있어야 Ant Design 팀에서 이슈를 분석하고 우선순위를 정할 수 있습니다. 이를 위해 이슈 생성 프로세스를 도움을 주는 [이슈 도우미](http://new-issue.ant.design)를 제공하고, GitHub Actions를 이용해 생성된 이슈를 검사합니다. 이슈 도우미의 기준을 충족하지 못하는 이슈는 [Invalid](https://github.com/ant-design/ant-design/issues?q=label%3AInvalid) 레이블이 부여되고 자동으로 닫히며, 이슈를 작성자에게 올바른 질문 방법을 알려주는 댓글이 달립니다. 예를 들어 이렇게 됩니다:
+Issue에 충분한 정보가 포함되어 있어야 Ant Design 팀에서 issue를 분석하고 우선순위를 정할 수 있습니다. 이를 위해 이슈 생성 프로세스를 도움을 주는 [issue 도우미](http://new-issue.ant.design)를 제공하고, GitHub Actions를 이용해 생성된 issue를 검사합니다. Issue 도우미의 기준을 충족하지 못하는 issue는 [Invalid](https://github.com/ant-design/ant-design/issues?q=label%3AInvalid) 레이블이 부여되고 자동으로 닫히며, issue를 작성자에게 올바른 질문 방법을 알려주는 댓글이 달립니다. 예를 들어 이렇게 됩니다:
 
 ![invalid-issue-preview](https://user-images.githubusercontent.com/32004925/231660945-509cf97c-43eb-4a1c-acd2-81eeedfe4a73.png)
 
-하지만 이슈 도우미를 사용하더라도, 때로는 제공된 정보가 부족하여 문제를 해결하기 어려운 경우가 있습니다. 이러한 경우에는 팀원들이 수동으로 이슈에 [🤔 Need Reproduce](https://github.com/ant-design/ant-design/issues?q=label%3A%22%F0%9F%A4%94+Need+Reproduce%22+), [needs-more-info](https://github.com/ant-design/ant-design/issues?q=label%3A%22%F0%9F%A4%94+Need+Reproduce%22+) 또는 [help wanted](https://github.com/ant-design/ant-design/issues?q=label%3A%22help+wanted%22+) 등의 레이블을 추가하여 이슈 작성자에게 더 자세한 정보를 요청합니다. 이와 관련된 다양한 레이블이 어떤 댓글 답변 Job를 실행 하는 지에 대한 기록은 [issue-labeled.yml](https://github.com/ant-design/ant-design/blob/da83561f9cb57b0eb03d18543d96393689f799be/.github/workflows/issue-labeled.yml) 파일에 있습니다:
+하지만 issue 도우미를 사용하더라도, 때로는 제공된 정보가 부족하여 문제를 해결하기 어려운 경우가 있습니다. 이러한 경우에는 팀원들이 수동으로 issue에 [🤔 Need Reproduce](https://github.com/ant-design/ant-design/issues?q=label%3A%22%F0%9F%A4%94+Need+Reproduce%22+), [needs-more-info](https://github.com/ant-design/ant-design/issues?q=label%3A%22%F0%9F%A4%94+Need+Reproduce%22+) 또는 [help wanted](https://github.com/ant-design/ant-design/issues?q=label%3A%22help+wanted%22+) 등의 레이블을 추가하여 issue 작성자에게 더 자세한 정보를 요청합니다. 이와 관련된 다양한 레이블이 어떤 댓글 답변 Job를 실행 하는 지에 대한 기록은 [issue-labeled.yml](https://github.com/ant-design/ant-design/blob/da83561f9cb57b0eb03d18543d96393689f799be/.github/workflows/issue-labeled.yml) 파일에 있습니다:
 
 ![need-reproduce-auto-comment-preview](https://user-images.githubusercontent.com/32004925/231673201-c7376eeb-010b-46d0-a7d0-4c115d58f58c.png)
 
@@ -53,14 +53,14 @@ Ant Design의 CI는 다음과 같은 영역을 다룹니다:
 
 ### 일반적인 Issue FAQ
 
-자주 발생하는 이슈에 대해서는 팀이 상세한 답변을 제공하여 개발자가 문제를 더 빠르게 해결할 수 있도록 돕습니다. 예를 들어, 문제 제목에 `웹사이트`, `다운`, `접속 불가`, `IE` 등의 키워드가 포함된 경우, [issue-open-check.yml#L43-L94](https://github.com/ant-design/ant-design/blob/da83561f9cb57b0eb03d18543d96393689f799be/.github/workflows/issue-open-check.yml#L43-L94) Job은 정의된 표준 답변이 달리고 해당 이슈를 자동으로 닫습니다.
+자주 발생하는 issue에 대해서는 팀이 상세한 답변을 제공하여 개발자가 문제를 더 빠르게 해결할 수 있도록 돕습니다. 예를 들어, 문제 제목에 `웹사이트`, `다운`, `접속 불가`, `IE` 등의 키워드가 포함된 경우, [issue-open-check.yml#L43-L94](https://github.com/ant-design/ant-design/blob/da83561f9cb57b0eb03d18543d96393689f799be/.github/workflows/issue-open-check.yml#L43-L94) Job은 정의된 표준 답변이 달리고 해당 issue를 자동으로 닫습니다.
 
 ### 정기적인 Issue 정리
 
-GitHub Actions의 예약 작업을 사용하여 이슈를 관리하고 닫는 과정을 자동화하면 처리되지 않은 이슈가 과도하게 쌓이는 것을 효과적으로 방지할 수 있습니다.
+GitHub Actions의 예약 작업을 사용하여 issue를 관리하고 닫는 과정을 자동화하면 처리되지 않은 issue가 과도하게 쌓이는 것을 효과적으로 방지할 수 있습니다.
 
-- [issue-close-require.yml](https://github.com/ant-design/ant-design/blob/01a475af6d8ff4943fe4c91d04582120bf9b3a84/.github/workflows/issue-close-require.yml): `🤔 Need Reproduce` 또는 `needs-more-info` 태그가 달린 이슈를 정해진 시간에 확인합니다. 만약 이 태그들이 3일 이내에 제거되지 않으면, 자동으로 댓글이 달리고 이슈가 닫힙니다.
-- [issue-check-inactive.yml](https://github.com/ant-design/ant-design/blob/01a475af6d8ff4943fe4c91d04582120bf9b3a84/.github/workflows/issue-check-inactive.yml): 최근 30일 동안 활동이 없는 이슈를 15일마다 확인하여 `Inactive` 레이블을 추가하지만, 이슈는 닫지 않습니다. 이슈가 수정되거나 새로운 댓글이 달리면 `Inactive`와 `needs-more-info` 레이블이 자동으로 제거됩니다.
+- [issue-close-require.yml](https://github.com/ant-design/ant-design/blob/01a475af6d8ff4943fe4c91d04582120bf9b3a84/.github/workflows/issue-close-require.yml): `🤔 Need Reproduce` 또는 `needs-more-info` 태그가 달린 issue를 정해진 시간에 확인합니다. 만약 이 태그들이 3일 이내에 제거되지 않으면, 자동으로 댓글이 달리고 issue가 닫힙니다.
+- [issue-check-inactive.yml](https://github.com/ant-design/ant-design/blob/01a475af6d8ff4943fe4c91d04582120bf9b3a84/.github/workflows/issue-check-inactive.yml): 최근 30일 동안 활동이 없는 issue를 15일마다 확인하여 `Inactive` 레이블을 추가하지만, issue는 닫지 않습니다. issue가 수정되거나 새로운 댓글이 달리면 `Inactive`와 `needs-more-info` 레이블이 자동으로 제거됩니다.
 
 ![inactive-issue-preview](https://user-images.githubusercontent.com/32004925/234459079-db813907-503d-4405-801d-38e133c85996.png)
 
@@ -74,7 +74,7 @@ PR을 생성하면 PR 템플릿을 통해 설명 내용이 자동으로 생성�
 
 ![pr-non-changelog-comment-preview](https://user-images.githubusercontent.com/32004925/231672871-32689c30-1e0a-40fc-9237-9b9b4312f15c.png)
 
-또한, PR 설명에 `🎱 Collaborate PR only` 레이블이 붙어 있을 경우, PR은 자동으로 닫히며 댓글로 알림이 전송됩니다.
+또한, PR에 언급된 issue에 `🎱 Collaborate PR only` 레이블이 붙어 있을 경우, PR은 자동으로 닫히며 댓글로 알림이 전송됩니다.
 
 `verify-files-modify.yml` 작업(Job)은 PR에서 변경된 파일을 검사하여 특정 디렉토리(예: ./github/, scripts/) 또는 파일(예: CHANGELOG.md)이 포함되어 있는 경우 커뮤니티 기여를 거부하고 PR을 자동으로 닫으며 핵심 멤버에게 할당합니다.
 
@@ -143,7 +143,7 @@ PR이 생성될 때마다 GitHub Action를 통해 자동으로 해당 PR을 빌�
 
 개발자와 커뮤니티 구성원이 관련 정보를 가능한 한 빨리 알 수 있도록 IM 통합이 Action에서 제공하는 이벤트를 사용하여 구현되었습니다:
 
-- [issue-notice](https://github.com/ant-design/ant-design/blob/master/.github/workflows/issue-open-check.yml#L96-L105)와 [discussion-notice](https://github.com/ant-design/ant-design/blob/dedbdfddafc0134219e391473c109c14766f413d/.github/workflows/disscustion-open-check.yml#L16-L25) Job는 이슈나 토론이 생성될 때마다 DingTalk 커뮤니티 그룹에 알림을 보냅니다.
+- [issue-notice](https://github.com/ant-design/ant-design/blob/master/.github/workflows/issue-open-check.yml#L96-L105)와 [discussion-notice](https://github.com/ant-design/ant-design/blob/dedbdfddafc0134219e391473c109c14766f413d/.github/workflows/disscustion-open-check.yml#L16-L25) Job는 issue나 Discussion이 생성될 때마다 DingTalk 커뮤니티 그룹에 알림을 보냅니다.
 
 - [release-helper.yml](https://github.com/ant-design/ant-design/blob/dedbdfddaf/.github/workflows/release-helper.yml) CI 파일은 antd가 버전을 출시하고 Release를 생성할 때마다 업데이트 로그를 DingTalk 커뮤니티 그룹에 게시합니다.
 
