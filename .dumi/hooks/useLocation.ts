@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useLocation as useDumiLocation } from 'dumi';
 
 function clearPath(path: string) {
-  return path.replace('', '').replace(/\/$/, '');
+  return path.replace(/\/$/, '');
 }
 
 export default function useLocation() {
