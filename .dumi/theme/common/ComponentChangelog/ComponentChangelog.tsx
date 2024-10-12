@@ -232,7 +232,7 @@ const ComponentChangelog: React.FC<ComponentChangelogProps> = (props) => {
   const screens = Grid.useBreakpoint();
   const width = screens.md ? '48vw' : '90vw';
 
-  if (!list || !list.length) {
+  if (!pathname.startsWith('/components/') || !list || !list.length) {
     return null;
   }
 
