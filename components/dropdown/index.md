@@ -17,7 +17,7 @@ demo:
 
 <!-- prettier-ignore -->
 <code src="./demo/basic.tsx">기본</code>
-<code src="./demo/extra.tsx" version="5.21.0">Extra node</code>
+<code src="./demo/extra.tsx" version="5.21.0">추가 노드</code>
 <code src="./demo/placement.tsx">배치</code>
 <code src="./demo/arrow.tsx">화살표</code>
 <code src="./demo/item.tsx">기타 요소</code>
@@ -29,7 +29,7 @@ demo:
 <code src="./demo/sub-menu.tsx">계단식 메뉴</code>
 <code src="./demo/sub-menu-debug.tsx" debug>계단식 메뉴</code>
 <code src="./demo/overlay-open.tsx">메뉴를 숨기는 방법</code>
-<code src="./demo/context-menu.tsx">Context Menu</code>
+<code src="./demo/context-menu.tsx">바로 가기 메뉴</code>
 <code src="./demo/loading.tsx">로딩</code>
 <code src="./demo/selectable.tsx">선택 가능한 메뉴</code>
 <code src="./demo/menu-full.tsx" debug>메뉴 전체 스타일</code>
