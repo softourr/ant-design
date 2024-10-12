@@ -36,6 +36,7 @@ const locales = {
     source: 'Source',
     docs: 'Docs',
     edit: 'Edit this page',
+    changelog: 'Changelog',
     version: 'Version',
   },
 };
