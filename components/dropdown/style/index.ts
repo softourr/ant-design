@@ -21,13 +21,11 @@ import genStatusStyle from './status';
 
 export interface ComponentToken extends ArrowToken, ArrowOffsetToken {
   /**
-   * @desc 下拉菜单 z-index
-   * @descEN z-index of dropdown
+   * @desc 드롭다운의 z-index
    */
   zIndexPopup: number;
   /**
-   * @desc 下拉菜单纵向内边距
-   * @descEN Vertical padding of dropdown
+   * @desc 드롭다운의 세로 안쪽 여백
    */
   paddingBlock: CSSProperties['paddingBlock'];
 }
