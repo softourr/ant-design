@@ -2,7 +2,7 @@
 category: Components
 group: Navigation
 title: Dropdown
-description: 드롭다운 목록.
+description: 드롭다운 목록입니다.
 cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*gTBySYX11WcAAAAAAAAAAAAADrJ8AQ/original
 coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*k619RJ_7bKEAAAAAAAAAAAAADrJ8AQ/original
 demo:
